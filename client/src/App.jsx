@@ -1,8 +1,10 @@
+import { Home } from "./views/Home"
+
 const App = () => {
 
   return (
     <>
-
+      <Home/>
     </>
   )
 }

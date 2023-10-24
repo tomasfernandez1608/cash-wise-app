@@ -1,6 +1,4 @@
-import '../styles.css';
-import '../views/js/datatables-simple-demo';
-import '../views/js/scripts';
+
 
 export const Home = () => {
 

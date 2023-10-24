@@ -2,7 +2,7 @@
 function Conexion()
 {
     $dbName = "cash-wise";
-    $host = "localhost/phpmyadmin/";
+    $host = "localhost";
     $user = "";
     $password = "";
 

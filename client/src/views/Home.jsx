@@ -1,39 +1,7 @@
-import { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import NavBar from "../components/NavBar";
 
 const Home = () => {
-
-    // const [usuarios, setUsuarios] = useState([]);
-
-    async function obtenerUsuarios() {
-      try {
-        const response = await fetch('http://localhost/utn/server/obtenerUsuarios.php');
-        if (!response.ok) {
-          throw new Error('No se pudo obtener la lista de usuarios');
-        }
-        const usuarios = await response.json();
-        return usuarios;
-      } catch (error) {
-        console.error('Error al obtener usuarios:', error);
-        throw error;
-      }
-    }
-  
-    useEffect(() => {
-      async function cargarUsuarios() {
-        try {
-          const usuarios = await obtenerUsuarios();
-          console.log(usuarios);
-        } catch (error) {
-          // Manejar el error
-        }
-      }
-  
-      cargarUsuarios();
-    }, []); // Asegúrate de ajustar las dependencias según tus necesidades
-  
-
     return (
         <div className="sb-nav-fixed">
             <NavBar />

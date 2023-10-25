@@ -1,7 +1,41 @@
+import { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import NavBar from "../components/NavBar";
 
 const Home = () => {
+    const [usuarios, setUsuarios] = useState([]);
+    // const [loading, setLoading] = useState(true);
+
+    async function obtenerUsuarios() {
+        try {
+            const API_KEY = 'http://localhost/utn/server/obtenerUsuarios.php';
+            const response = await fetch(API_KEY);
+
+            if (!response.ok) {
+                throw new Error('No se pudo obtener la lista de usuarios');
+            }
+            const usuarios = await response.json();
+            return usuarios;
+        } catch (error) {
+            console.error('Error al obtener usuarios:', error);
+            throw error;
+        }
+    }
+
+    useEffect(() => {
+        async function cargarUsuarios() {
+            try {
+                const usuarios = await obtenerUsuarios();
+                setUsuarios(usuarios);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        cargarUsuarios();
+    }, []);
+
+
     return (
         <div className="sb-nav-fixed">
             <NavBar />
@@ -107,22 +141,14 @@ const Home = () => {
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                        {usuarios.map((usuario, i) =>
+                                            <tr key={i}>
+                                                <td>{usuario.nombre}{usuario.apellido}</td>
+                                                <td>{usuario.correo}</td>
+                                                <td>{usuario.tipoplan}</td>
+                                                <td>{usuario.sueldo}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                                <td>$170,750</td>
-                                            </tr>
+                                        )}
                                         </tbody>
                                     </table>
                                 </div>

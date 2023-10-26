@@ -56,22 +56,42 @@ const Home = () => {
                                 <li className="breadcrumb-item active">Cashwise es una aplicación de gestión de gastos y finanzas personales diseñada para simplificar y fortalecer tu control financiero. Con Cashwise, podes registrar y categorizar fácilmente tus ingresos y gastos, establecer presupuestos personalizados y hacer un seguimiento de tus metas de ahorro. La interfaz intuitiva y las poderosas herramientas de visualización te permiten entender tus patrones de gasto y tomar decisiones financieras más inteligentes. Cashwise es tu socio confiable para alcanzar la estabilidad financiera y asegurarte de que tu dinero trabaje para vos.</li>
                             </ol>
                             <div className="row">
-                                <div className="col-xl-6">
-                                    <div className="card mb-4">
-                                        <div className="card-header">
-                                            <i className="fas fa-chart-area me-1"></i>
-                                            Area Chart Example
-                                        </div>
-                                        <div className="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                <div className="col-xl-4">
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        <p class="fst-italic">Iniciar Sesion o Registrese</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="#" class="btn btn-outline-dark m-3">Inicia Sesion</a>
+                                        <br></br>
+                                        <a href="#" class="btn btn-dark m-3">Registrarse</a>
                                     </div>
                                 </div>
-                                <div className="col-xl-6">
-                                    <div className="card mb-4">
-                                        <div className="card-header">
-                                            <i className="fas fa-chart-bar me-1"></i>
-                                            Bar Chart Example
+                                </div>
+                                <div className="col-xl-8">
+                                <div class="card" >
+                                    <div class="row g-0">
+                                        <div class="col-md-4 mt-5">
+                                        <img src="https://static.vecteezy.com/system/resources/previews/015/123/095/non_2x/government-expenditures-circle-infographic-design-template-for-dark-theme-financial-statistics-editable-pie-chart-with-sectors-visual-data-presentation-vector.jpg" class="img-fluid rounded-start" alt="..."></img>
                                         </div>
-                                        <div className="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                        <div class="col-md-8">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="card-title">Balance de Gastos</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item bg-dark-subtle text-emphasis-dark">Alquiler: $1,200</li>
+                                                        <li class="list-group-item bg-secondary text-white">Comida: $400</li>
+                                                        <li class="list-group-item bg-dark-subtle text-emphasis-dark">Transporte: $200</li>
+                                                        <li class="list-group-item bg-secondary text-white">Entretenimiento: $150</li>
+                                                        <li class="list-group-item bg-dark-subtle text-emphasis-dark">Facturas: $300</li>
+                                                        <li class="list-group-item bg-secondary text-white">Ahorros: $500</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

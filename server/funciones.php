@@ -2,10 +2,17 @@
 function obtenerUsuarios()
 {
     $bd = obtenerConexion();
-    $sentencia = $bd->query("SELECT * FROM usuario");
+    $sentencia = $bd->query("SELECT * FROM usuarios");
     return $sentencia->fetchAll();
 }
 
+function obtenerUsuario($id)
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->prepare("SELECT * FROM usuarios WHERE idusuario = ?");
+    $sentencia->execute([$id]);
+    return $sentencia->fetchObject();
+}
 function obtenerConexion()
 {
     $dbName = "cash-wise";

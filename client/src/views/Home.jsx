@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import NavBar from "../components/NavBar";
+import { Login } from "../components/Login";
 
 const Home = () => {
     const [usuarios, setUsuarios] = useState([]);
@@ -55,16 +56,17 @@ const Home = () => {
                             <ol className="breadcrumb mb-4">
                                 <li className="breadcrumb-item active">Cashwise es una aplicación de gestión de gastos y finanzas personales diseñada para simplificar y fortalecer tu control financiero. Con Cashwise, podes registrar y categorizar fácilmente tus ingresos y gastos, establecer presupuestos personalizados y hacer un seguimiento de tus metas de ahorro. La interfaz intuitiva y las poderosas herramientas de visualización te permiten entender tus patrones de gasto y tomar decisiones financieras más inteligentes. Cashwise es tu socio confiable para alcanzar la estabilidad financiera y asegurarte de que tu dinero trabaje para vos.</li>
                             </ol>
-                            <div className="row">
+                            <div className="row mb-3">
                                 <div className="col-xl-4">
                                 <div class="card text-center">
                                     <div class="card-header">
                                         <p class="fst-italic">Iniciar Sesion o Registrese</p>
                                     </div>
-                                    <div class="card-body">
-                                        <a href="#" class="btn btn-outline-dark m-3">Inicia Sesion</a>
+                                    <div className="card-body">
+                                        <Login />
+                                        {/* <a href="#" class="btn btn-outline-dark m-3">Inicia Sesion</a>
                                         <br></br>
-                                        <a href="#" class="btn btn-dark m-3">Registrarse</a>
+                                        <a href="#" class="btn btn-dark m-3">Registrarse</a> */}
                                     </div>
                                 </div>
                                 </div>

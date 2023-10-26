@@ -1,5 +1,3 @@
-import React from "react";
-
 export const Password = () => {
   return (
     <>
@@ -28,7 +26,7 @@ export const Password = () => {
                             type="email"
                             placeholder="name@example.com"
                           />
-                          <label for="inputEmail">Email address</label>
+                          <label htmlFor="inputEmail">Email address</label>
                         </div>
                         <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                           <a className="small" href="login.html">

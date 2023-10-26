@@ -1,5 +1,3 @@
-import React from "react";
-
 export const Register = () => {
   return (
     <>
@@ -26,7 +24,7 @@ export const Register = () => {
                                 type="text"
                                 placeholder="Enter your first name"
                               />
-                              <label for="inputFirstName">First name</label>
+                              <label htmlFor="inputFirstName">First name</label>
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -37,7 +35,7 @@ export const Register = () => {
                                 type="text"
                                 placeholder="Enter your last name"
                               />
-                              <label for="inputLastName">Last name</label>
+                              <label htmlFor="inputLastName">Last name</label>
                             </div>
                           </div>
                         </div>
@@ -48,7 +46,7 @@ export const Register = () => {
                             type="email"
                             placeholder="name@example.com"
                           />
-                          <label for="inputEmail">Email address</label>
+                          <label htmlFor="inputEmail">Email address</label>
                         </div>
                         <div className="row mb-3">
                           <div className="col-md-6">
@@ -59,7 +57,7 @@ export const Register = () => {
                                 type="password"
                                 placeholder="Create a password"
                               />
-                              <label for="inputPassword">Password</label>
+                              <label htmlFor="inputPassword">Password</label>
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -70,7 +68,7 @@ export const Register = () => {
                                 type="password"
                                 placeholder="Confirm password"
                               />
-                              <label for="inputPasswordConfirm">
+                              <label htmlFor="inputPasswordConfirm">
                                 Confirm Password
                               </label>
                             </div>

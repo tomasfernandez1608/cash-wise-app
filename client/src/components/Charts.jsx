@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Charts = () => {
   return (
     <>
@@ -109,7 +107,7 @@ export const Charts = () => {
                         <div className="card mb-4">
                             <div className="card-body">
                                 Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
-                                <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
+                                <a target="_blank" href="https://www.chartjs.org/docs/latest/" rel="noreferrer">Chart.js documentation</a>
                                 .
                             </div>
                         </div>

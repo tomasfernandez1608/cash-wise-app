@@ -1,5 +1,3 @@
-import React from "react";
-
 export const Login = () => {
   return (
     <>
@@ -11,11 +9,14 @@ export const Login = () => {
                 <div className="col-lg-12">
                   <div className="card shadow-lg border-0 rounded-lg mt-1">
                     <div className="card-header">
-                      <h3 className="text-center font-weight-light my-1">
-                        Login
-                      </h3>
+                      <h4 className="text-center font-weight-light my-1">
+                        Para acceder a las funciones del sitio, debes iniciar sesión o registrarte.
+                      </h4>
                     </div>
                     <div className="card-body">
+                      <h5 className="text-left font-weight-light my-1">
+                        Acceso
+                      </h5>
                       <form>
                         <div className="form-floating mb-1">
                           <input
@@ -24,7 +25,7 @@ export const Login = () => {
                             type="email"
                             placeholder="name@example.com"
                           />
-                          <label for="inputEmail">Direccion de Email</label>
+                          <label htmlFor="inputEmail">Email</label>
                         </div>
                         <div className="form-floating mb-3">
                           <input
@@ -33,35 +34,37 @@ export const Login = () => {
                             type="password"
                             placeholder="Password"
                           />
-                          <label for="inputPassword">Contraseña</label>
+                          <label htmlFor="inputPassword">Contraseña</label>
                         </div>
-                        <div className="form-check mb-3">
-                          <input
-                            className="form-check-input"
-                            id="inputRememberPassword"
-                            type="checkbox"
-                            value=""
-                          />
-                          <label
-                            className="form-check-label"
-                            for="inputRememberPassword"
-                          >
-                            Recordar Contraseña
-                          </label>
+                        <div className="form-floating mb-1">
+                          <button className="btn btn-primary btn-login" href="index.html">
+                            Iniciar sesión
+                          </button>
                         </div>
                         <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                           <a className="small" href="password.html">
-                            Olvido su contraseña?
+                            ¿Olvidó su contraseña?
                           </a>
-                          <a className="btn btn-primary" href="index.html">
-                            Login
-                          </a>
+                          <div className="form-check mb-3">
+                            <input
+                              className="form-check-input"
+                              id="inputRememberPassword"
+                              type="checkbox"
+                              value=""
+                            />
+                            <label
+                              className="form-check-label"
+                              htmlFor="inputRememberPassword"
+                            >
+                              Recordar contraseña
+                            </label>
+                          </div>
                         </div>
                       </form>
                     </div>
                     <div className="card-footer text-center py-3">
-                      <div className="small">
-                        <a href="register.html">Necesita una cuenta? Sign up!</a>
+                      <div>
+                        <a href="register.html">¿Necesita una cuenta? ¡Registrese!</a>
                       </div>
                     </div>
                   </div>

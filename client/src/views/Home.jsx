@@ -9,6 +9,7 @@ const Home = () => {
     async function obtenerUsuarios() {
         try {
             const API_KEY = 'http://localhost/utn/server/obtenerUsuarios.php';
+            // const API_KEY = 'http://localhost/utn/server/obtenerUsuario.php?id=1';
             const response = await fetch(API_KEY);
 
             if (!response.ok) {
@@ -47,7 +48,7 @@ const Home = () => {
                         </div>
                     </nav>
                 </div>
-   
+
                 <div id="layoutSidenav_content">
                     <main>
                         <div className="container-fluid px-4">
@@ -106,7 +107,7 @@ const Home = () => {
                                         <tbody>
                                         {usuarios.map((usuario, i) =>
                                             <tr key={i}>
-                                                <td>{usuario.nombre}{usuario.apellido}</td>
+                                                <td>{usuario.nombre} {usuario.apellido}</td>
                                                 <td>{usuario.correo}</td>
                                                 <td>{usuario.tipoplan}</td>
                                                 <td>{usuario.sueldo}</td>
@@ -116,7 +117,6 @@ const Home = () => {
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                     </main>
 

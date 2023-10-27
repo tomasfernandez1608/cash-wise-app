@@ -1,43 +1,27 @@
 import { useState, useEffect } from "react";
+import { Login } from "../components/Login";
 import Nav from "../components/Nav";
 import NavBar from "../components/NavBar";
-import { Login } from "../components/Login";
 import Footer from "../components/Footer";
 import Piechart from "../components/Piechart";
+import CoinRanking from "../components/CoinRanking";
+import { obtenerOperaciones } from "../services/obtenerOperaciones";
 
 const Home = () => {
-    const [usuarios, setUsuarios] = useState([]);
-
-    async function obtenerUsuarios() {
-        try {
-            const API_KEY = 'http://localhost/utn/server/obtenerUsuarios.php';
-            // const API_KEY = 'http://localhost/utn/server/obtenerUsuario.php?id=1';
-            const response = await fetch(API_KEY);
-
-            if (!response.ok) {
-                throw new Error('No se pudo obtener la lista de usuarios');
-            }
-            const usuarios = await response.json();
-            return usuarios;
-        } catch (error) {
-            console.error('Error al obtener usuarios:', error);
-            throw error;
-        }
-    }
+    const [operaciones, setOperaciones] = useState([]);
 
     useEffect(() => {
-        async function cargarUsuarios() {
+        async function cargarOperaciones() {
             try {
-                const usuarios = await obtenerUsuarios();
-                setUsuarios(usuarios);
+                const operaciones = await obtenerOperaciones();
+                setOperaciones(operaciones);
             } catch (error) {
                 console.log(error);
             }
         }
 
-        cargarUsuarios();
+        cargarOperaciones();
     }, []);
-
 
     return (
         <div className="sb-nav-fixed">
@@ -64,53 +48,13 @@ const Home = () => {
                                             <h5 className="card-title">Balance de gastos</h5>
                                         </div>
                                         <div className="card-body">
-                                            <Piechart />
+                                            <Piechart operaciones={operaciones} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="card mb-4">
-                                <div className="card-header">
-                                    <i className="fas fa-table me-1"></i>
-                                    DataTable Example
-                                </div>
-                                <div className="card-body">
-                                    <table id="datatablesSimple">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            {usuarios.map((usuario, i) =>
-                                                <tr key={i}>
-                                                    <td>{usuario.nombre} {usuario.apellido}</td>
-                                                    <td>{usuario.correo}</td>
-                                                    <td>{usuario.tipoplan}</td>
-                                                    <td>{usuario.sueldo}</td>
-                                                </tr>
-                                            )}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
+                        <CoinRanking />
                     </main>
                     <Footer />
                 </div>

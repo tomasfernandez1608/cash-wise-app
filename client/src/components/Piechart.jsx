@@ -1,13 +1,51 @@
-import { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto'
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import Chart from 'chart.js/auto';
+import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 
-const Piechart = () => {
-    const categories = ['Comidas y bebidas', 'Supermercado', 'Transporte'];
-    const amount = [300, 50, 100];
-    const mergedArray = categories.map((category, index) => `${category}: $${amount[index]}`);
-
+const Piechart = ({ operaciones }) => {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
+    const [tipoDeGasto, setTipoDeGasto] = useState([]);
+
+    useEffect(() => {
+        async function cargarTipoDeGasto() {
+            try {
+                const tipoDeGasto = await obtenerTipoDeGasto();
+                setTipoDeGasto(tipoDeGasto);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        cargarTipoDeGasto();
+    }, []);
+
+    // Crear un objeto para agrupar los montos por tipo_gasto_id
+    const montosAgrupados = operaciones.reduce((result, data) => {
+        const tipoGastoId = data.tipo_gasto_id;
+        if (!result[tipoGastoId]) {
+            result[tipoGastoId] = {
+                tipo_gasto_id: tipoGastoId,
+                total_monto: parseFloat(data.monto),
+            };
+        } else {
+            result[tipoGastoId].total_monto += parseFloat(data.monto);
+        }
+        return result;
+    }, {});
+
+    const operacionesFinal = Object.values(montosAgrupados);
+
+    const amount = operacionesFinal.map((item) => parseFloat(item.total_monto));
+
+    const categories = operacionesFinal.map((item) => item.tipo_gasto_id);
+    const nombresDeCategorias = categories.map((categoryId) => {
+        const tipo = tipoDeGasto.find((tipo) => tipo.id_gasto === categoryId);
+        return tipo ? tipo.descripcion : 'Tipo no encontrado';
+    });
+
+    const mergedArray = nombresDeCategorias.map((category, index) => `${category}: $${amount[index]}`);
 
     useEffect(() => {
         if (chartInstance.current) {
@@ -58,5 +96,9 @@ const Piechart = () => {
         </div>
     )
 }
+
+Piechart.propTypes = {
+    operaciones: PropTypes.array.isRequired,
+};
 
 export default Piechart

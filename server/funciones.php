@@ -13,6 +13,21 @@ function obtenerUsuario($id)
     $sentencia->execute([$id]);
     return $sentencia->fetchObject();
 }
+
+function obtenerOperaciones()
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->query("SELECT * FROM operaciones");
+    return $sentencia->fetchAll();
+}
+
+function obtenerTipoDeGasto()
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->query("SELECT * FROM tipo_gasto");
+    return $sentencia->fetchAll();
+}
+
 function obtenerConexion()
 {
     $dbName = "cash-wise";

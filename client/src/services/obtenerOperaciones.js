@@ -1,7 +1,7 @@
 export async function obtenerOperaciones() {
     try {
         
-        const API_KEY = 'http://localhost/server/obtenerOperaciones.php';
+        const API_KEY = 'http://localhost/serverWiseApp/obtenerOperaciones.php';
         const response = await fetch(API_KEY);
 
         if (!response.ok) {

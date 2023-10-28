@@ -1,6 +1,9 @@
+import Footer from "../components/Footer";
+
 const Contact = () => {
   return (
     <div id="layoutSidenav_content">
+
       <main className=" w-75  m-5   ">
         
         <h3>Formulario de Contacto</h3>

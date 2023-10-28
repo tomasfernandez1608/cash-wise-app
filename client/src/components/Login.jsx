@@ -1,7 +1,72 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { obtenerUsuarios } from '../services/obtenerUsuarios';
+import { MD5 } from 'crypto-js';
+
 export const Login = () => {
+  const [usuario, setUsuario] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const [usuarios, setUsuarios] = useState([]);
+  const [respuesta, setRespuesta] = useState('');
+
+  function verificarInicioSesion(correoIngresado, contrasenaIngresada) {
+    const usuarioLogueado = usuarios.find((usuario) => {
+      return usuario.correo === correoIngresado && usuario.clave === MD5(contrasenaIngresada).toString();
+    });
+
+    return usuarioLogueado || null;
+  }
+
+  const ejecutarFuncionPHP = async () => {
+    try {
+      const response = await fetch('http://localhost/utn/server/iniciarSesion.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setRespuesta(data.mensaje);
+      } else {
+        setRespuesta('Error al ejecutar la función PHP');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+  useEffect(() => {
+    async function cargarUsuarios() {
+      try {
+        const usuarios = await obtenerUsuarios();
+        setUsuarios(usuarios);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    cargarUsuarios();
+  }, []);
+
+  const handleInicioSesion = async (e) => {
+    e.preventDefault();
+
+    const usuarioLogueado = verificarInicioSesion(usuario, contrasena);
+
+    if (usuarioLogueado) {
+      ejecutarFuncionPHP();
+    } else {
+      console.log('Inicio de sesión fallido. Correo o contraseña incorrectos.');
+    }
+  };
+
   return (
     <>
-      <div >
+      <div>
         <div id="layoutAuthentication_content">
           <main>
             <div className="container">
@@ -17,13 +82,16 @@ export const Login = () => {
                       <h5 className="text-left font-weight-light my-1">
                         Acceso
                       </h5>
-                      <form>
+                      <form onSubmit={handleInicioSesion}>
                         <div className="form-floating mb-1">
                           <input
                             className="form-control"
                             id="inputEmail"
                             type="email"
                             placeholder="name@example.com"
+                            name='login'
+                            value={usuario}
+                            onChange={(e) => setUsuario(e.target.value)}
                           />
                           <label htmlFor="inputEmail">Email</label>
                         </div>
@@ -33,11 +101,14 @@ export const Login = () => {
                             id="inputPassword"
                             type="password"
                             placeholder="Password"
+                            name='password'
+                            value={contrasena}
+                            onChange={(e) => setContrasena(e.target.value)}
                           />
                           <label htmlFor="inputPassword">Contraseña</label>
                         </div>
                         <div className="form-floating mb-1">
-                          <button className="btn btn-primary btn-login" href="index.html">
+                          <button type='submit' className="btn btn-primary btn-login" id='ingresar'>
                             Iniciar sesión
                           </button>
                         </div>
@@ -64,7 +135,9 @@ export const Login = () => {
                     </div>
                     <div className="card-footer text-center py-3">
                       <div>
-                        <a href="/registro">¿Necesita una cuenta? ¡Registrese!</a>
+
+                        <Link to="/registro">¿Necesita una cuenta? ¡Registrese!</Link>
+
                       </div>
                     </div>
                   </div>
@@ -73,22 +146,6 @@ export const Login = () => {
             </div>
           </main>
         </div>
-        {/* <div id="layoutAuthentication_footer">
-           <footer className="py-4 bg-light mt-auto">
-            <div className="container-fluid px-4">
-              <div className="d-flex align-items-center justify-content-between small">
-                <div className="text-muted">
-                  Copyright &copy; Your Website 2023
-                </div>
-                <div>
-                  <a href="#">Privacy Policy</a>
-                  &middot;
-                  <a href="#">Terms &amp; Conditions</a>
-                </div>
-              </div>
-            </div>
-          </footer>
-        </div> */}
       </div>
     </>
   );

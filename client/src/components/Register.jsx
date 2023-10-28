@@ -1,13 +1,13 @@
-export const Register = () => {
+const Register = () => {
   return (
     <>
       <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
           <main>
-            <div className="container">
+            <div className="container bg-secundary">
               <div className="row justify-content-center">
                 <div className="col-lg-7">
-                  <div className="card shadow-lg border-0 rounded-lg mt-5">
+                  <div className="card shadow-lg border-0 rounded-lg mt-5 ">
                     <div className="card-header">
                       <h3 className="text-center font-weight-light my-4">
                         Create Account
@@ -97,23 +97,9 @@ export const Register = () => {
             </div>
           </main>
         </div>
-        <div id="layoutAuthentication_footer">
-          <footer className="py-4 bg-light mt-auto">
-            <div className="container-fluid px-4">
-              <div className="d-flex align-items-center justify-content-between small">
-                <div className="text-muted">
-                  Copyright &copy; Your Website 2023
-                </div>
-                <div>
-                  <a href="#">Privacy Policy</a>
-                  &middot;
-                  <a href="#">Terms &amp; Conditions</a>
-                </div>
-              </div>
-            </div>
-          </footer>
-        </div>
       </div>
     </>
   );
 };
+
+export default Register;

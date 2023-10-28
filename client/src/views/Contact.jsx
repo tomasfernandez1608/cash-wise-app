@@ -10,13 +10,13 @@ const Contact = () => {
         <form  action="tu_script_de_procesamiento.php" method="post">
           <div className="row">
             <div className=" col-6 ">
-                <div class="mb-3">
-                  <label for="nombre" class="form-label">
+                <div className="mb-3">
+                  <label for="nombre" className="form-label">
                     Nombre
                   </label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="nombre"
                     name="nombre"
                     required
@@ -24,13 +24,13 @@ const Contact = () => {
                 </div>
             </div>
             <div className=" col-6 ">
-              <div class="mb-3">
-                <label for="Apellido" class="form-label">
+              <div className="mb-3">
+                <label for="Apellido" className="form-label">
                 Apellido
                 </label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="Apellido"
                   name="Apellido"
                   required
@@ -39,31 +39,31 @@ const Contact = () => {
 
             </div>
           </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">
+          <div className="mb-3">
+            <label for="email" className="form-label">
               Correo Electrónico
             </label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="email"
               name="email"
               required
             ></input>
           </div>
-          <div class="mb-3">
-            <label for="mensaje" class="form-label">
+          <div className="mb-3">
+            <label for="mensaje" className="form-label">
               Mensaje
             </label>
             <textarea
-              class="form-control"
+              className="form-control"
               id="mensaje"
               name="mensaje"
               rows="4"
               required
             ></textarea>
           </div>
-          <button type="submit" class="btn btn-primary align-items-end ">
+          <button type="submit" className="btn btn-primary align-items-end ">
             Enviar
           </button>
         </form>

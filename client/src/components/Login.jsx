@@ -17,19 +17,23 @@ export const Login = () => {
     return usuarioLogueado || null;
   }
 
-  const ejecutarFuncionPHP = async () => {
+  const ejecutarFuncionPHP = async (usuario, contrasena) => {
     try {
-      const response = await fetch('http://localhost/utn/server/iniciarSesion.php', {
+      const response = await fetch('http://localhost/serverWiseApp/iniciarSesion.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          usuario: usuario,
+          contrasena: contrasena
+        }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        setRespuesta(data.mensaje);
+        console.log(data);
+        setRespuesta(data);
       } else {
         setRespuesta('Error al ejecutar la función PHP');
       }
@@ -54,14 +58,22 @@ export const Login = () => {
 
   const handleInicioSesion = async (e) => {
     e.preventDefault();
+    console.log(usuario);
+    console.log(contrasena);
 
-    const usuarioLogueado = verificarInicioSesion(usuario, contrasena);
-
-    if (usuarioLogueado) {
-      ejecutarFuncionPHP();
+    if (usuario && contrasena) {
+      ejecutarFuncionPHP(usuario, contrasena);
     } else {
       console.log('Inicio de sesión fallido. Correo o contraseña incorrectos.');
     }
+
+    // const usuarioLogueado = await verificarInicioSesion(usuario, contrasena);
+    // console.log('Usuario Loggeado: ', usuarioLogueado);
+    // if (usuarioLogueado) {
+    //   ejecutarFuncionPHP();
+    // } else {
+    //   console.log('Inicio de sesión fallido. Correo o contraseña incorrectos.');
+    // }
   };
 
   return (
@@ -111,6 +123,18 @@ export const Login = () => {
                           <button type='submit' className="btn btn-primary btn-login" id='ingresar'>
                             Iniciar sesión
                           </button>
+                        </div>
+                        {
+                          respuesta != '' ? (
+                            <>
+                              <h3 className="red-text">{respuesta}</h3>
+                            </>
+                          ) : (
+                            null
+                          )
+                        }
+                        <div>
+
                         </div>
                         <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                           <a className="small" href="password.html">

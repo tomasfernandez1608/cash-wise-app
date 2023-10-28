@@ -2,6 +2,7 @@ const Contact = () => {
   return (
     <div id="layoutSidenav_content">
       <main className=" w-75  m-5   ">
+        
         <h3>Formulario de Contacto</h3>
         <form  action="tu_script_de_procesamiento.php" method="post">
           <div className="row">

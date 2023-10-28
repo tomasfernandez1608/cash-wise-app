@@ -5,12 +5,6 @@ const About = () => (
         <AboutComponent />
         <Footer/>
     </div>
-
-  
-  // <div id="layoutSidenav_content">
-  //   <AboutComponente/>
-  // </div>
-  
 );
 
 export default About;

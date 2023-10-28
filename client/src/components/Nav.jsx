@@ -35,9 +35,9 @@ const Nav = () => {
                         </Link>
                         <Link className="nav-link " to="/nosotros">
                             <div className="sb-nav-link-icon">
-                                <i className="fas fa-chart-area"></i>
+                                <i class="fa-solid fa-circle-info"></i>
                             </div>
-                            ¿Quienes Somos?
+                            About
                         </Link>
                         <Link className="nav-link " to="/contacto">
                             <div className="sb-nav-link-icon">

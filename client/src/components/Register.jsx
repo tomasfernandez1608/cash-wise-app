@@ -7,7 +7,7 @@ const Register = () => {
             <div className="container bg-secundary">
               <div className="row justify-content-center">
                 <div className="col-lg-7">
-                  <div className="card shadow-lg border-0 rounded-lg mt-5 ">
+                  <div className="card shadow-lg border-0 rounded-lg mt-5 text-white bg-dark ">
                     <div className="card-header">
                       <h3 className="text-center font-weight-light my-4">
                         Create Account
@@ -17,18 +17,18 @@ const Register = () => {
                       <form>
                         <div className="row mb-3">
                           <div className="col-md-6">
-                            <div className="form-floating mb-3 mb-md-0">
+                            <div className="form-floating text-black mb-3 mb-md-0">
                               <input
                                 className="form-control"
                                 id="inputFirstName"
                                 type="text"
                                 placeholder="Enter your first name"
                               />
-                              <label htmlFor="inputFirstName">First name</label>
+                              <label htmlFor="inputFirstName" >Ingrese Nombre</label>
                             </div>
                           </div>
                           <div className="col-md-6">
-                            <div className="form-floating">
+                            <div className="form-floating text-black">
                               <input
                                 className="form-control"
                                 id="inputLastName"
@@ -39,7 +39,7 @@ const Register = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="form-floating mb-3">
+                        <div className="form-floating mb-3 text-black">
                           <input
                             className="form-control"
                             id="inputEmail"
@@ -50,7 +50,7 @@ const Register = () => {
                         </div>
                         <div className="row mb-3">
                           <div className="col-md-6">
-                            <div className="form-floating mb-3 mb-md-0">
+                            <div className="form-floating mb-3 mb-md-0 text-black">
                               <input
                                 className="form-control"
                                 id="inputPassword"
@@ -61,7 +61,7 @@ const Register = () => {
                             </div>
                           </div>
                           <div className="col-md-6">
-                            <div className="form-floating mb-3 mb-md-0">
+                            <div className="form-floating mb-3 mb-md-0 text-black ">
                               <input
                                 className="form-control"
                                 id="inputPasswordConfirm"
@@ -77,7 +77,7 @@ const Register = () => {
                         <div className="mt-4 mb-0">
                           <div className="d-grid">
                             <a
-                              className="btn btn-primary btn-block"
+                              className="btn btn-secondary  btn-block"
                               href="login.html"
                             >
                               Create Account
@@ -88,7 +88,7 @@ const Register = () => {
                     </div>
                     <div className="card-footer text-center py-3">
                       <div className="small">
-                        <a href="login.html">Have an account? Go to login</a>
+                        <a href="/">Have an account? Go to login</a>
                       </div>
                     </div>
                   </div>

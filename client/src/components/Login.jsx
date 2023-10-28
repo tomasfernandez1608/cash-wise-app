@@ -64,7 +64,7 @@ export const Login = () => {
                     </div>
                     <div className="card-footer text-center py-3">
                       <div>
-                        <a href="register.html">¿Necesita una cuenta? ¡Registrese!</a>
+                        <a href="/registro">¿Necesita una cuenta? ¡Registrese!</a>
                       </div>
                     </div>
                   </div>

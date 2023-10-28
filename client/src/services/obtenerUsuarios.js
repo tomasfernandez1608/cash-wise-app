@@ -1,6 +1,6 @@
 export async function obtenerUsuarios() {
     try {
-        const API_KEY = 'http://localhost/utn/server/obtenerUsuarios.php';
+        const API_KEY = 'http://localhost/serverWiseApp/obtenerUsuarios.php';
         const response = await fetch(API_KEY);
 
         if (!response.ok) {

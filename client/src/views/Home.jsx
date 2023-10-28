@@ -21,6 +21,14 @@ const Home = () => {
         cargarOperaciones();
     }, []);
 
+
+    const [logeado, setLogeado] = useState(false);
+
+    const handleLog = (estado, sessionId) => {
+        setLogeado(estado);
+        console.log('sessionId :', sessionId);
+    }
+
     return (
         <div id="layoutSidenav_content">
             <main>
@@ -32,7 +40,14 @@ const Home = () => {
                     <div className="row mb-3">
                         <div className="col-xl-4">
                             <div className="text-center">
-                                <Login />
+                                {
+                                    !logeado ? (
+                                        <Login handleLog={handleLog} />
+                                    ) : (
+                                        
+                                        <button>Cerrar Session</button>
+                                    )
+                                }
                             </div>
                         </div>
 

@@ -1,3 +1,4 @@
+
 import AboutComponent from "../components/AboutComponent";
 import Footer from "../components/Footer";
 const About = () => (
@@ -8,3 +9,4 @@ const About = () => (
 );
 
 export default About;
+

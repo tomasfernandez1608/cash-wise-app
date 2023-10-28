@@ -28,6 +28,13 @@ function obtenerTipoDeGasto()
     return $sentencia->fetchAll();
 }
 
+function iniciarSesion()
+{
+    $bd = obtenerConexion();
+    $sentencia = $bd->query("SELECT * FROM usuarios");
+    return $sentencia->fetchAll();
+}
+
 function obtenerConexion()
 {
     $dbName = "bw9is5cg7nkeccmci5nc";

@@ -1,6 +1,7 @@
 export async function obtenerTipoDeGasto() {
     try {
-        const API_KEY = 'http://localhost/utn/server/obtenerTipoDeGasto.php';
+        
+        const API_KEY = 'http://localhost/server/obtenerTipoDeGasto.php';
         const response = await fetch(API_KEY);
 
         if (!response.ok) {

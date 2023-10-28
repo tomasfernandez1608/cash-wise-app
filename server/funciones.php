@@ -30,10 +30,10 @@ function obtenerTipoDeGasto()
 
 function obtenerConexion()
 {
-    $dbName = "cash-wise";
-    $host = "localhost";
-    $user = "root";
-    $password = "";
+    $dbName = "bw9is5cg7nkeccmci5nc";
+    $host = "bw9is5cg7nkeccmci5nc-mysql.services.clever-cloud.com";
+    $user = "udxdiw02an5765ke";
+    $password = "eeC6V00hsf6PVXyb46XM";
 
     try {
         $database = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $user, $password);

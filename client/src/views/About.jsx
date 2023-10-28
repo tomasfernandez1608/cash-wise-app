@@ -1,14 +1,12 @@
+
+import AboutComponent from "../components/AboutComponent";
 import Footer from "../components/Footer";
-
-const About = () => {
-  return (
+const About = () => (
     <div id="layoutSidenav_content">
-      <main>
-
-      </main>
-      <Footer />
+        <AboutComponent />
+        <Footer/>
     </div>
-  )
-}
+);
 
 export default About;
+

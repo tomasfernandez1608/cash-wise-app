@@ -135,7 +135,9 @@ export const Login = () => {
                     </div>
                     <div className="card-footer text-center py-3">
                       <div>
+
                         <Link to="/registro">¿Necesita una cuenta? ¡Registrese!</Link>
+
                       </div>
                     </div>
                   </div>

@@ -35,7 +35,7 @@ const Nav = () => {
                         </Link>
                         <Link className="nav-link " to="/nosotros">
                             <div className="sb-nav-link-icon">
-                                <i class="fa-solid fa-circle-info"></i>
+                                <i className="fa-solid fa-circle-info"></i>
                             </div>
                             About
                         </Link>

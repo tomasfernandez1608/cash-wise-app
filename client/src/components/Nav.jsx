@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Nav = () => {
     return (
         <div id="layoutSidenav_nav">
@@ -5,44 +7,44 @@ const Nav = () => {
                 <div className="sb-sidenav-menu bg-secondary">
                     <div className="nav">
                         <div className="sb-sidenav-menu-heading">Core</div>
-                        <a className="nav-link text-white" href="index.html">
+                        <Link className="nav-link text-white" to="/">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-tachometer-alt"></i>
                             </div>
                             Dashboard
-                        </a>
+                        </Link>
                         <div className="sb-sidenav-menu-heading">Addons</div>
-                        <a className="nav-link text-white" href="charts.html">
+                        <Link className="nav-link text-white" to="/graficos">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-chart-area"></i>
                             </div>
                             Charts
-                        </a>
-                        <a className="nav-link text-white" href="tables.html">
+                        </Link>
+                        <Link className="nav-link text-white" to="/historial">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-table"></i>
                             </div>
                             Historial
-                        </a>
+                        </Link>
                         <div className="sb-sidenav-menu-heading">Nosotros</div>
-                        <a className="nav-link text-white" href="charts.html">
+                        <Link className="nav-link text-white" to="/premium">
                             <div className="sb-nav-link-icon">
                                 <i className="fa-solid fa-star fa-flip"></i>
                             </div>
                             Premium
-                        </a>
-                        <a className="nav-link text-white" href="charts.html">
+                        </Link>
+                        <Link className="nav-link text-white" to="/nosotros">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-chart-area"></i>
                             </div>
                             ¿Quienes Somos?
-                        </a>
-                        <a className="nav-link text-white" href="tables.html">
+                        </Link>
+                        <Link className="nav-link text-white" to="/contacto">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-table"></i>
                             </div>
                             Contacto
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </nav>

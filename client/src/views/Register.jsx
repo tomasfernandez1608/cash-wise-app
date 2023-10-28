@@ -1,7 +1,14 @@
+import Footer from "../components/Footer";
+
 const Register = () => {
   return (
-    <div>Register</div>
+    <div id="layoutSidenav_content">
+      <main>
+
+      </main>
+      <Footer />
+    </div>
   )
 }
 
-export default Register
+export default Register;

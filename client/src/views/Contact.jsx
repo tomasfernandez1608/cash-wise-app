@@ -1,7 +1,14 @@
+import Footer from "../components/Footer";
+
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <div id="layoutSidenav_content">
+      <main>
+
+      </main>
+      <Footer />
+    </div>
   )
 }
 
-export default Contact
+export default Contact;

@@ -5,9 +5,9 @@ const Footer = () => {
                 <div className="d-flex align-items-center justify-content-between small">
                     <div className="text-muted">Copyright &copy; Cashwise App 2023</div>
                     <div>
-                        <a href="#">Privacy Policy</a>
+                        <a href="#">Política de privacidad</a>
                         &middot;
-                        <a href="#">Terms &amp; Conditions</a>
+                        <a href="#">Terminos &amp; Condiciones</a>
                     </div>
                 </div>
             </div>

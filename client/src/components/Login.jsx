@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { obtenerUsuarios } from '../services/obtenerUsuarios';
 import { MD5 } from 'crypto-js';
 
-export const Login = () => {
+export const Login = ({handleLog}) => {
+  
   const [usuario, setUsuario] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [usuarios, setUsuarios] = useState([]);
@@ -34,6 +35,7 @@ export const Login = () => {
         const data = await response.json();
         console.log(data);
         setRespuesta(data);
+        handleLog(true, 1);
       } else {
         setRespuesta('Error al ejecutar la función PHP');
       }

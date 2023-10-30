@@ -14,7 +14,7 @@ const Nav = () => {
                             Dashboard
                         </Link>
                         <div className="sb-sidenav-menu-heading text-white">Addons</div>
-                        <Link className="nav-link " to="/graficos">
+                        <Link className="nav-link " to="/gestion">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-chart-area"></i>
                             </div>

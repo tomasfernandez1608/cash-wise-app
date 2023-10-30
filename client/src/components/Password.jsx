@@ -1,22 +1,23 @@
+import { Link } from 'react-router-dom';
+
 export const Password = () => {
   return (
     <>
-      <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-          <main>
+      <div id="layoutAuthentication" style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
+        <div id="layoutSidenav_content" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <main style={{ width: '100%' }}>
             <div className="container">
               <div className="row justify-content-center">
-                <div className="col-lg-5">
+                <div className="col-12"> {/* Ajusta estas clases de columnas según tus necesidades */}
                   <div className="card shadow-lg border-0 rounded-lg mt-5">
                     <div className="card-header">
                       <h3 className="text-center font-weight-light my-4">
-                        Password Recovery
+                        Restauración de contraseña
                       </h3>
                     </div>
                     <div className="card-body">
                       <div className="small mb-3 text-muted">
-                        Enter your email address and we will send you a link to
-                        reset your password.
+                        Ingrese su Email para restaurar su contraseña
                       </div>
                       <form>
                         <div className="form-floating mb-3">
@@ -29,18 +30,18 @@ export const Password = () => {
                           <label htmlFor="inputEmail">Email address</label>
                         </div>
                         <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                          <a className="small" href="login.html">
-                            Return to login
-                          </a>
+                          <Link className="small" to={'/'}>
+                            Regresar al Login
+                          </Link>
                           <a className="btn btn-primary" href="login.html">
-                            Reset Password
+                            Restaurar Contraseña
                           </a>
                         </div>
                       </form>
                     </div>
                     <div className="card-footer text-center py-3">
                       <div className="small">
-                        <a href="register.html">Need an account? Sign up!</a>
+                        <Link to={'/registro'}>¿Necesita una cuenta? ¡Registrese!</Link>
                       </div>
                     </div>
                   </div>

@@ -7,7 +7,7 @@ export const Password = () => {
       <div id="layoutAuthentication"  >
         <div id="layoutAuthentication_content">
           <main >
-            <div className="container " >
+            <div className="container pt-4" >
               <div className="row justify-content-center align-content-center">
                 <div className="col-lg-6"> {/* Ajusta estas clases de columnas según tus necesidades */}
                   <div className="card shadow-lg border-0 rounded-lg mt-5 text-white bg-dark">

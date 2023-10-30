@@ -10,12 +10,13 @@ const Contact = () => {
               <div class="col-md-4">
                 <img
                   src="https://thumbs.dreamstime.com/z/lista-del-contacto-32953587.jpg?w=768"
-                  class="img-fluid rounded-circle"
+                  class="img-fluid rounded-circle "
+                  style={{width:250}}
                   alt="..."
                 ></img>
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
+              <div class="col-md-8  ">
+                <div class="card-body ">
                   <h5 class="card-title fw-bold  font-monospace ">Contacto</h5>
                   <p class="card-text">
                     <ul class="list-group list-group-flush">

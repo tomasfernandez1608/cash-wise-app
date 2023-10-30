@@ -3,24 +3,25 @@ import { Link } from 'react-router-dom';
 export const Password = () => {
   return (
     <>
-      <div id="layoutAuthentication" style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
-        <div id="layoutSidenav_content" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <main style={{ width: '100%' }}>
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-12"> {/* Ajusta estas clases de columnas según tus necesidades */}
-                  <div className="card shadow-lg border-0 rounded-lg mt-5">
-                    <div className="card-header">
+    <div id="layoutSidenav_content">
+      <div id="layoutAuthentication"  >
+        <div id="layoutAuthentication_content">
+          <main >
+            <div className="container " >
+              <div className="row justify-content-center align-content-center">
+                <div className="col-lg-6"> {/* Ajusta estas clases de columnas según tus necesidades */}
+                  <div className="card shadow-lg border-0 rounded-lg mt-5 text-white bg-dark">
+                    <div className="card-header text-white">
                       <h3 className="text-center font-weight-light my-4">
                         Restauración de contraseña
                       </h3>
                     </div>
-                    <div className="card-body">
-                      <div className="small mb-3 text-muted">
+                    <div className="card-body text-white ">
+                      <div className="small mb-3  ">
                         Ingrese su Email para restaurar su contraseña
                       </div>
                       <form>
-                        <div className="form-floating mb-3">
+                        <div className="form-floating mb-3  text-black ">
                           <input
                             className="form-control"
                             id="inputEmail"
@@ -39,7 +40,7 @@ export const Password = () => {
                         </div>
                       </form>
                     </div>
-                    <div className="card-footer text-center py-3">
+                    <div className="card-footer text-center py-3 text-white">
                       <div className="small">
                         <Link to={'/registro'}>¿Necesita una cuenta? ¡Registrese!</Link>
                       </div>
@@ -67,6 +68,7 @@ export const Password = () => {
           </footer>
         </div>
       </div>
+    </div>
     </>
   );
 };

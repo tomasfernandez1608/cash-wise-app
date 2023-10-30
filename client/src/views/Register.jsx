@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import RegisterComponent from "../components/Register";
 
 
@@ -9,7 +8,6 @@ const Register = () => {
       <main>
         <RegisterComponent />
       </main>
-      <Footer />
     </div>
   )
 }

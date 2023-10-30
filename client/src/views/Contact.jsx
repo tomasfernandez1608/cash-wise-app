@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 const Contact = () => {
   return (
     <div id="layoutSidenav_content">
-      <main className=" w-75  m-5   ">
+      <main className=" w-75  m-5  pt-4   ">
         <div className="row">
           <div class="card mb-3">
             <div class="row g-0">
@@ -18,8 +18,9 @@ const Contact = () => {
               <div class="col-md-8  ">
                 <div class="card-body ">
                   <h5 class="card-title fw-bold  font-monospace ">Contacto</h5>
-                  <p class="card-text">
+                  <p class="card-text"> 
                     <ul class="list-group list-group-flush">
+                    <li class="list-group-item"></li> 
                       <li class="list-group-item">
                         <img
                           src="https://firebasestorage.googleapis.com/v0/b/eco-gm.appspot.com/o/Fotos_Producto%2Fenviar-correo.png?alt=media&token=92eba718-d5bb-48e6-8c0b-8550fff56dfd&_gl=1*113xgai*_ga*MjAzOTcxOTU0My4xNjk3MTMwODQ4*_ga_CW55HF8NVT*MTY5ODY3MTE5MS44LjEuMTY5ODY3MTIyNS4yNi4wLjA."
@@ -118,6 +119,7 @@ const Contact = () => {
           </form>
         </div>
       </main>
+      <Footer/>
     </div>
   );
 };

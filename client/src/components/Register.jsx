@@ -1,10 +1,12 @@
+import Footer from "./Footer";
+
 const Register = () => {
   return (
     <>
       <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
           <main>
-            <div className="container bg-secundary">
+            <div className="container bg-secundary pt-4 ">
               <div className="row justify-content-center">
                 <div className="col-lg-7">
                   <div className="card shadow-lg border-0 rounded-lg mt-5 text-white bg-dark ">
@@ -98,6 +100,7 @@ const Register = () => {
           </main>
         </div>
       </div>
+            <Footer/>
     </>
   );
 };

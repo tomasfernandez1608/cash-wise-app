@@ -31,28 +31,37 @@ const Home = () => {
 
   useEffect(() => {
     // logica del localeStorage
-    let user = { name: 'Juan', age: 30 }; //aca armo el usuario deberiamos tomar el objeto q trae desde la API
+    let user = { name: "Juan", age: 30 }; //aca armo el usuario deberiamos tomar el objeto q trae desde la API
     if (logeado) {
       localStorage.setItem("userInfoWiseApp", JSON.stringify(user)); //almaceno y creo el local storage en este caso se llama 'userInfoWiseApp'
     }
   }, [logeado]);
 
+
+  //Olvidar contraseña
+  const [forgotPassword, setForgotPassword] = useState(false);
+  useEffect(() => {
+    if (!forgotPassword) {
+      setForgotPassword(true);
+    }
+  }, [forgotPassword]);
+
   //FUnciones localeStorage
   useEffect(() => {
     // optener data del local
-    const nombreDeUsuario = localStorage.getItem('userInfoWiseApp');
+    const nombreDeUsuario = localStorage.getItem("userInfoWiseApp");
     console.log(nombreDeUsuario);
 
     //optener data convertida a string
-    const storedUser = JSON.parse(localStorage.getItem('userInfoWiseApp'));
+    const storedUser = JSON.parse(localStorage.getItem("userInfoWiseApp"));
     console.log(storedUser);
 
     // remover item del localStorage
-    localStorage.removeItem('userToken');
+    localStorage.removeItem("userToken");
 
     // Eliminar/limpiar localeStorge
     // localStorage.clear();
-  },[])
+  }, []);
 
   return (
     <div id="layoutSidenav_content">
@@ -73,6 +82,7 @@ const Home = () => {
               vos.
             </li>
           </ol>
+
           <div className="row mb-3">
             <div className="col-xl-4">
               <div className="text-center">
@@ -84,12 +94,12 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-xl-8">
+            <div className="col-xl-5">
               <div className="card">
                 <div className="card-header">
                   <h5 className="card-title">Balance de gastos</h5>
                 </div>
-                <div className="card-body">
+                <div className="card-body" style={{ maxHeight: "550px" }}>
                   <Piechart operaciones={operaciones} />
                 </div>
               </div>

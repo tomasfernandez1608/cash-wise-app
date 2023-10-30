@@ -6,6 +6,7 @@ import Register from './views/Register';
 import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import './styles.css';
+import { Password } from './components/Password';
 
 const App = () => {
   return (
@@ -38,6 +39,13 @@ const App = () => {
               exact
               element={<About />}
             />
+
+            <Route
+              path="/OlvidoContrasena"
+              exact
+              element={<Password />}
+            />
+            
           </Routes>
         </div>
       </div>

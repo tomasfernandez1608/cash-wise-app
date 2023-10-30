@@ -88,7 +88,7 @@ const CoinRanking = () => {
               </tr>
             </tfoot> */}
             <tbody>
-              {coins.map((coin) => (
+              {currentItems.map((coin) => (
                 <tr key={coin.uuid}>
                   <td className="align-middle">{coin.rank}</td>
                   <td className="align-middle">
@@ -111,13 +111,14 @@ const CoinRanking = () => {
               ))}
             </tbody>
             {/* Botones de paginación */}
+          </table>
             <nav>
-              <ul className="pagination">
+              <ul className="pagination justify-content-center">
                 {pageNumbers.map((number) => (
                   <li key={number} className="page-item">
                     <a
                       onClick={() => paginate(number)}
-                      href="!#"
+                      // href="!#"
                       className="page-link"
                     >
                       {number}
@@ -126,7 +127,6 @@ const CoinRanking = () => {
                 ))}
               </ul>
             </nav>
-          </table>
         </div>
       </div>
     </div>

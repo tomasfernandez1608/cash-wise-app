@@ -8,6 +8,7 @@ const Piechart = ({ operaciones }) => {
     const chartInstance = useRef(null);
     const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
+    // console.log(tipoDeGasto);
     useEffect(() => {
         async function cargarTipoDeGasto() {
             try {
@@ -91,7 +92,7 @@ const Piechart = ({ operaciones }) => {
     }, [amount, mergedArray])
 
     return (
-        <div style={{ width: '600px' }}>
+        <div style={{ width: '400px' }}>
             <canvas ref={chartRef} style={{ width: '300px', height: '300px' }}></canvas>
         </div>
     )

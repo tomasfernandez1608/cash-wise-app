@@ -100,7 +100,7 @@ const Register = () => {
           </main>
         </div>
       </div>
-      <Footer/>
+            <Footer/>
     </>
   );
 };

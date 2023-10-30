@@ -66,6 +66,7 @@ export const Password = () => {
               </div>
             </div>
           </footer>
+          
         </div>
       </div>
     </div>

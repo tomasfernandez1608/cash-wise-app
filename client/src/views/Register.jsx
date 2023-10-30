@@ -9,6 +9,7 @@ const Register = () => {
         <RegisterComponent />
       </main>
     </div>
+    
   )
 }
 

@@ -17,7 +17,6 @@ const Gestion = () =>{
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        handleLog(true, 1);
       } else {
         setRespuesta('Error al ejecutar la función PHP');
       }

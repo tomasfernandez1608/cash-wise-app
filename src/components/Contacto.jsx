@@ -113,9 +113,12 @@ const Contacto = () => {
                 required
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary align-items-end ">
+            <div className=" d-flex  justify-content-end ">
+
+            <button type="submit" className="btn btn-outline-dark  align-items-end ">
               Enviar
             </button>
+            </div>
           </form>
         </div>
       </main>

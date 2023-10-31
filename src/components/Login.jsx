@@ -129,20 +129,6 @@ export const Login = () => {
                           <Link className="small" to="/OlvidoContrasena">
                             ¿Olvidó su contraseña?
                           </Link>
-                          <div className="form-check mb-3">
-                            <input
-                              className="form-check-input"
-                              id="inputRememberPassword"
-                              type="checkbox"
-                              value=""
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="inputRememberPassword"
-                            >
-                              Recordar contraseña
-                            </label>
-                          </div>
                         </div>
                       </form>
                     </div>

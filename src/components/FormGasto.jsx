@@ -3,8 +3,8 @@ import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 
 const FormGasto = () => {
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
-  const [monto, setMonto] = useState(""); // Agrega estado para el monto
-  const [tipoGastoId, setTipoGastoId] = useState(""); // Agrega estado para el tipo de gasto
+  const [monto, setMonto] = useState("");
+  const [tipoGastoId, setTipoGastoId] = useState("");
 
   useEffect(() => {
     async function cargarTipoDeGasto() {
@@ -22,17 +22,15 @@ const FormGasto = () => {
   const handleSend = async (e) => {
     e.preventDefault();
 
-    // Obten el ID de usuario del Local Storage
     const usuarioLocalStorage = JSON.parse(localStorage.getItem("user"));
     const idusuario = usuarioLocalStorage.idusuario;
 
-    // Crea un objeto con los datos del formulario
     const data = {
-      monto: parseFloat(monto), // Convierte el monto a número
-      tipo_gasto_id: parseInt(tipoGastoId), // Convierte el tipo de gasto a número
+      monto: parseFloat(monto),
+      tipo_gasto_id: parseInt(tipoGastoId),
       idusuario,
     };
-    console.log(data);
+
     try {
       const response = await fetch("http://localhost/serverWiseApp/registrarGastos.php", {
         method: "POST",
@@ -44,14 +42,12 @@ const FormGasto = () => {
 
       if (response.ok) {
         const responseData = await response.json();
-        // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
         console.log(responseData);
+        window.location.reload();
       } else {
-        // Manejar errores
         console.error("Error en la solicitud al servidor");
       }
     } catch (error) {
-      // Manejar errores de red u otros errores
       console.error(error);
     }
   };

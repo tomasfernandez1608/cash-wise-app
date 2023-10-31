@@ -24,12 +24,6 @@ const Nav = () => {
                         {sessionId && !usuario.admin ? (
                             <>
                                 <div className="sb-sidenav-menu-heading text-white">Servicios</div>
-                                <Link className="nav-link " to="/gestion">
-                                    <div className="sb-nav-link-icon">
-                                        <i className="fas fa-chart-area"></i>
-                                    </div>
-                                    Charts
-                                </Link>
                                 <Link className="nav-link " to="/historial">
                                     <div className="sb-nav-link-icon">
                                         <i className="fas fa-table"></i>

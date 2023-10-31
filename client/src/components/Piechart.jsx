@@ -8,7 +8,6 @@ const Piechart = ({ operaciones }) => {
     const chartInstance = useRef(null);
     const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
-    // console.log(tipoDeGasto);
     useEffect(() => {
         async function cargarTipoDeGasto() {
             try {

@@ -1,5 +1,4 @@
 const FormGasto = () => {
-
   return (
     <div id="layoutSidenav_content">
       <main className=" m-5 ">

@@ -22,29 +22,33 @@ const Register = () => {
                             <div className="form-floating text-black mb-3 mb-md-0">
                               <input
                                 className="form-control"
-                                id="inputFirstName"
+                                id="nombre"
                                 type="text"
-                                placeholder="Enter your first name"
+                                placeholder="Ingrese su nombre"
                               />
-                              <label htmlFor="inputFirstName" >Ingrese Nombre</label>
+                              <label htmlFor="inputNombre">
+                                Ingrese su Nombre
+                              </label>
                             </div>
                           </div>
                           <div className="col-md-6">
                             <div className="form-floating text-black">
                               <input
                                 className="form-control"
-                                id="inputLastName"
+                                id="apellido"
                                 type="text"
-                                placeholder="Enter your last name"
+                                placeholder="Ingrese su apellido"
                               />
-                              <label htmlFor="inputLastName">Last name</label>
+                              <label htmlFor="inputApellido">
+                                Ingrese su Apellido
+                              </label>
                             </div>
                           </div>
                         </div>
                         <div className="form-floating mb-3 text-black">
                           <input
                             className="form-control"
-                            id="inputEmail"
+                            id="correo"
                             type="email"
                             placeholder="name@example.com"
                           />
@@ -55,7 +59,7 @@ const Register = () => {
                             <div className="form-floating mb-3 mb-md-0 text-black">
                               <input
                                 className="form-control"
-                                id="inputPassword"
+                                id="clave"
                                 type="password"
                                 placeholder="Create a password"
                               />
@@ -66,7 +70,7 @@ const Register = () => {
                             <div className="form-floating mb-3 mb-md-0 text-black ">
                               <input
                                 className="form-control"
-                                id="inputPasswordConfirm"
+                                id="claveConfirm"
                                 type="password"
                                 placeholder="Confirm password"
                               />
@@ -76,11 +80,26 @@ const Register = () => {
                             </div>
                           </div>
                         </div>
+                        <div className="row mb-3">
+                          <div className="col-md-12">
+                            <div className="form-floating text-black">
+                              <input
+                                className="form-control"
+                                id="Sueldo"
+                                type="text"
+                                placeholder="Ingrese su Sueldo Mensual"
+                              />
+                              <label htmlFor="inputSueldo">
+                                Ingrese su Sueldo Mensual
+                              </label>
+                            </div>
+                          </div>
+                        </div>
                         <div className="mt-4 mb-0">
                           <div className="d-grid">
                             <a
                               className="btn btn-secondary  btn-block"
-                              href="login.html"
+                              href="/"
                             >
                               Create Account
                             </a>
@@ -100,7 +119,7 @@ const Register = () => {
           </main>
         </div>
       </div>
-            <Footer/>
+      <Footer />
     </>
   );
 };

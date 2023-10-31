@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import { Login } from "../components/Login";
+import { obtenerOperaciones } from "../services/obtenerOperaciones";
+import { obtenerUsuario } from "../services/obtenerUsuario";
 import Footer from "../components/Footer";
 import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
-import { obtenerOperaciones } from "../services/obtenerOperaciones";
+
 
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const [sessionId, setSessionId] = useState();
 
   useEffect(() => {
     async function cargarOperaciones() {
@@ -21,47 +25,33 @@ const Home = () => {
     cargarOperaciones();
   }, []);
 
-  const [logeado, setLogeado] = useState(false);
-
-  const handleLog = (estado, sessionId) => {
-    setLogeado(estado);
-
-    console.log("sessionId :", sessionId);
-  };
+  useEffect(() => {
+    setSessionId(localStorage.getItem("sessionId"));
+  }, [sessionId]);
 
   useEffect(() => {
-    // logica del localeStorage
-    let user = { name: "Juan", age: 30 }; //aca armo el usuario deberiamos tomar el objeto q trae desde la API
-    if (logeado) {
-      localStorage.setItem("userInfoWiseApp", JSON.stringify(user)); //almaceno y creo el local storage en este caso se llama 'userInfoWiseApp'
+    async function cargarUsuario() {
+      try {
+        const correo = JSON.parse(localStorage.getItem("correo"));
+        const usuario = await obtenerUsuario(correo);
+        localStorage.setItem("user", JSON.stringify(usuario));
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }, [logeado]);
 
+    if (localStorage.getItem("sessionId")) {
+      cargarUsuario();
+    }
+
+  }, []);
 
   //Olvidar contraseña
-  const [forgotPassword, setForgotPassword] = useState(false);
   useEffect(() => {
     if (!forgotPassword) {
       setForgotPassword(true);
     }
   }, [forgotPassword]);
-
-  //FUnciones localeStorage
-  useEffect(() => {
-    // optener data del local
-    const nombreDeUsuario = localStorage.getItem("userInfoWiseApp");
-    console.log(nombreDeUsuario);
-
-    //optener data convertida a string
-    const storedUser = JSON.parse(localStorage.getItem("userInfoWiseApp"));
-    console.log(storedUser);
-
-    // remover item del localStorage
-    localStorage.removeItem("userToken");
-
-    // Eliminar/limpiar localeStorge
-    // localStorage.clear();
-  }, []);
 
   return (
     <div id="layoutSidenav_content">
@@ -83,23 +73,20 @@ const Home = () => {
             </li>
           </ol>
 
-          <div className="row mb-3">
+          <div className="row mb-3 d-flex justify-content-center g-4 ">
             <div className="col-xl-4">
               <div className="text-center">
-                {!logeado ? (
-                  <Login handleLog={handleLog} />
-                ) : (
-                  <button>Cerrar Session</button>
-                )}
+                {
+                  sessionId ? <p>Usuario logueado</p> : <Login />
+                }
               </div>
             </div>
-
-            <div className="col-xl-5">
+            <div className="col-8">
               <div className="card">
                 <div className="card-header">
-                  <h5 className="card-title">Balance de gastos</h5>
+                  <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                 </div>
-                <div className="card-body" style={{ maxHeight: "550px" }}>
+                <div className="card-body d-flex justify-content-center" style={{ maxHeight: "550px" }}>
                   <Piechart operaciones={operaciones} />
                 </div>
               </div>

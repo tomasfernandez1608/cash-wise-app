@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { obtenerUsuarios } from '../services/obtenerUsuarios';
 import { MD5 } from 'crypto-js';
 
-export const Login = ({handleLog}) => {
-  
+export const Login = () => {
   const [usuario, setUsuario] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [usuarios, setUsuarios] = useState([]);
@@ -18,32 +17,28 @@ export const Login = ({handleLog}) => {
     return usuarioLogueado || null;
   }
 
-  const ejecutarFuncionPHP = async (usuario, contrasena) => {
+  const ejecutarFuncionPHP = async () => {
     try {
-      const response = await fetch('http://localhost/serverWiseApp/iniciarSesion.php', {
+      const response = await fetch('http://localhost/serverWiseApp/inicioSesion.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          usuario: usuario,
-          contrasena: contrasena
-        }),
+        body: JSON.stringify({}),
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        setRespuesta(data);
-        handleLog(true, 1);
+        localStorage.setItem("sessionId", JSON.stringify(data));
+        localStorage.setItem("correo", JSON.stringify(usuario));
+        window.location.reload();
       } else {
-        setRespuesta('Error al ejecutar la función PHP');
+        console.log('Error al ejecutar la función PHP');
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
 
   useEffect(() => {
     async function cargarUsuarios() {
@@ -58,24 +53,16 @@ export const Login = ({handleLog}) => {
     cargarUsuarios();
   }, []);
 
-  const handleInicioSesion = async (e) => {
+  const handleInicioSesion = (e) => {
     e.preventDefault();
-    console.log(usuario);
-    console.log(contrasena);
 
-    if (usuario && contrasena) {
-      ejecutarFuncionPHP(usuario, contrasena);
+    const usuarioLogueado = verificarInicioSesion(usuario, contrasena);
+
+    if (usuarioLogueado) {
+      ejecutarFuncionPHP();
     } else {
-      console.log('Inicio de sesión fallido. Correo o contraseña incorrectos.');
+      setRespuesta('Inicio de sesión fallido. Correo o contraseña incorrectos.');
     }
-
-    // const usuarioLogueado = await verificarInicioSesion(usuario, contrasena);
-    // console.log('Usuario Loggeado: ', usuarioLogueado);
-    // if (usuarioLogueado) {
-    //   ejecutarFuncionPHP();
-    // } else {
-    //   console.log('Inicio de sesión fallido. Correo o contraseña incorrectos.');
-    // }
   };
 
   return (
@@ -136,7 +123,6 @@ export const Login = ({handleLog}) => {
                           )
                         }
                         <div>
-
                         </div>
                         <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                           <Link className="small" to="/OlvidoContrasena">
@@ -161,9 +147,7 @@ export const Login = ({handleLog}) => {
                     </div>
                     <div className="card-footer text-center py-3">
                       <div>
-
                         <Link to="/registro">¿Necesita una cuenta? ¡Registrese!</Link>
-
                       </div>
                     </div>
                   </div>

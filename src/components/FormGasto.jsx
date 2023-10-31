@@ -5,8 +5,6 @@ const FormGasto = () => {
 
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
-  console.log(tipoDeGasto);
-
   useEffect(() => {
 
     async function cargarTipoDeGasto() {
@@ -36,9 +34,15 @@ const FormGasto = () => {
   }
 
   return (
-      <main>
-        <div className="card border border-5  ">
-          <div className=" row">
+    <main>
+      <div className="card">
+        <div className="card-header">
+          <h5 className="card-title d-flex justify-content-center ">
+            Gestor de Gastos
+          </h5>
+        </div>
+        <div className="card-body d-flex  justify-content-center  align-items-center " style={{ height: "450px" }}>
+          <div className=" row " >
             <div className=" col-xl-5  mt-4">
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/eco-gm.appspot.com/o/Fotos_Producto%2Fpresupuesto.png?alt=media&token=0b7d92a3-1172-4556-8f79-8cfcac0eb8bb&_gl=1*s7zmfr*_ga*MjAzOTcxOTU0My4xNjk3MTMwODQ4*_ga_CW55HF8NVT*MTY5ODcwODQ2MS45LjEuMTY5ODcwODQ3Mi40OS4wLjA."
@@ -79,20 +83,21 @@ const FormGasto = () => {
                       aria-label="Tipo De Gasto"
                       defaultValue=""
                     >
-                      <option disabled value="">Seleccione un gasto</option>
+                      <option disabled value="">
+                        Seleccione un gasto
+                      </option>
 
-                      { tipoDeGasto.map((gasto, index) => (
+                      {tipoDeGasto.map((gasto, index) => (
                         <option key={index} value={gasto.id_gasto}>
                           {gasto.descripcion}
                         </option>
-                      )) }
-                      
+                      ))}
                     </select>
                     <div className="d-flex justify-content-end">
                       <button
-                        // type="submit" 
+                        // type="submit"
                         className="btn btn-primary mt-3"
-                        // onClick={handleSend}
+                      // onClick={handleSend}
                       >
                         Submit
                       </button>
@@ -103,8 +108,8 @@ const FormGasto = () => {
             </div>
           </div>
         </div>
-      </main>
-    
+      </div>
+    </main>
   );
 };
 

@@ -1,43 +1,50 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
+    const [sessionId, setSessionId] = useState();
+    const [usuario, setUsuario] = useState({});
+
+    useEffect(() => {
+        setSessionId(localStorage.getItem("sessionId"));
+        setUsuario(JSON.parse(localStorage.getItem("user")));
+    }, [sessionId]);
+
     return (
         <div id="layoutSidenav_nav">
             <nav className="sb-sidenav accordion sb-sidenav" id="sidenavAccordion" >
                 <div className="sb-sidenav-menu bg-black">
                     <div className="nav">
-                        <div className="sb-sidenav-menu-heading text-white">Core</div>
-                        <Link className="nav-link text-white" to="/">
+                        <Link className="nav-link text-white mt-3" to="/">
                             <div className="sb-nav-link-icon">
                                 <i className="fas fa-tachometer-alt"></i>
                             </div>
-                            Dashboard
+                            Inicio
                         </Link>
-                        <div className="sb-sidenav-menu-heading text-white">Addons</div>
-                        <Link className="nav-link " to="/gestion">
-                            <div className="sb-nav-link-icon">
-                                <i className="fas fa-chart-area"></i>
-                            </div>
-                            Charts
-                        </Link>
-                        <Link className="nav-link " to="/historial">
-                            <div className="sb-nav-link-icon">
-                                <i className="fas fa-table"></i>
-                            </div>
-                            Historial
-                        </Link>
+                        {sessionId && !usuario.admin ? (
+                            <>
+                                <div className="sb-sidenav-menu-heading text-white">Servicios</div>
+                                <Link className="nav-link " to="/gestion">
+                                    <div className="sb-nav-link-icon">
+                                        <i className="fas fa-chart-area"></i>
+                                    </div>
+                                    Charts
+                                </Link>
+                                <Link className="nav-link " to="/historial">
+                                    <div className="sb-nav-link-icon">
+                                        <i className="fas fa-table"></i>
+                                    </div>
+                                    Historial
+                                </Link>
+                            </>
+                        ) : null}
+
                         <div className="sb-sidenav-menu-heading text-white">Nosotros</div>
-                        <Link className="nav-link " to="/premium">
-                            <div className="sb-nav-link-icon">
-                                <i className="fa-solid fa-star fa-flip"></i>
-                            </div>
-                            Premium
-                        </Link>
                         <Link className="nav-link " to="/nosotros">
                             <div className="sb-nav-link-icon">
                                 <i className="fa-solid fa-circle-info"></i>
                             </div>
-                            About
+                            ¿Quienes somos?
                         </Link>
                         <Link className="nav-link " to="/contacto">
                             <div className="sb-nav-link-icon">

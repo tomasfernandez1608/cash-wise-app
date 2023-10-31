@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 const About = () => (
     <div id="layoutSidenav_content">
         <AboutComponent />
-        <Footer/>
+        <Footer />
     </div>
 );
 

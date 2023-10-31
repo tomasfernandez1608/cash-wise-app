@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
 
-
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
   const [forgotPassword, setForgotPassword] = useState(false);

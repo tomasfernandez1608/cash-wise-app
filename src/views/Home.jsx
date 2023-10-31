@@ -59,7 +59,7 @@ const Home = () => {
           </ol>
 
           <div className="row mb-3 d-flex justify-content-center g-4 ">
-            <div className="col-sm-5">
+            <div className="col-xl-5">
               <div className="text-center">
                 {
                   sessionId ? (
@@ -74,7 +74,7 @@ const Home = () => {
                 }
               </div>
             </div>
-            <div className="col-sm-7">
+            <div className="col-xl-7">
               <div className="card">
                 <div className="card-header">
                   <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>

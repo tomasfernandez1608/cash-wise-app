@@ -69,7 +69,7 @@ const FormGasto = () => {
                     </select>
                     <div className="d-flex justify-content-end">
                       <button
-                        // type="submit" 
+                        // type="submit" //
                         className="btn btn-primary mt-3"
                         onClick={handleSend}
                       >

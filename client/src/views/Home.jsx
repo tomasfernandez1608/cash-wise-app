@@ -58,9 +58,16 @@ const Home = () => {
         <div className="container-fluid px-4">
           <h1 className="mt-4">Cashwise App</h1>
           <ol className="breadcrumb mb-4">
-            <li className=" text-opacity-25 ">
-              
-Cashwise es una aplicación de gestión financiera personal que simplifica el control de tus gastos e ingresos. Te permite registrar, categorizar, establecer presupuestos y rastrear tus metas de ahorro. Con una interfaz intuitiva y herramientas de visualización poderosas, te ayuda a comprender tus patrones de gasto y tomar decisiones financieras más inteligentes. Cashwise es tu aliado para lograr estabilidad financiera y hacer que tu dinero trabaje a tu favor.
+            <li className="breadcrumb-item active fs-7">
+              Cashwise es una aplicación de gestión de gastos y finanzas
+              personales diseñada para simplificar y fortalecer tu control
+              financiero. Con Cashwise, podes registrar y categorizar fácilmente
+              tus ingresos y gastos, establecer presupuestos personalizados y
+              hacer un seguimiento de tus metas de ahorro. La interfaz intuitiva
+              y las poderosas herramientas de visualización te permiten entender
+              tus patrones de gasto y tomar decisiones financieras más
+              inteligentes. Cashwise es tu socio confiable para alcanzar la
+              estabilidad financiera y asegurarte de que tu dinero trabaje para
               vos.
             </li>
           </ol>
@@ -78,7 +85,7 @@ Cashwise es una aplicación de gestión financiera personal que simplifica el co
                 <div className="card-header">
                   <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                 </div>
-                <div className="card-body d-flex justify-content-center   " style={{ maxHeight: "550px" }}>
+                <div className="card-body d-flex justify-content-center" style={{ maxHeight: "350px" }}>
                   <Piechart operaciones={operaciones} />
                 </div>
               </div>

@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react";
+import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
+
 const FormGasto = () => {
+  const [tipoDeGasto, setTipoDeGasto] = useState([]);
+
+  console.log(tipoDeGasto);
+  useEffect(() => {
+    async function cargarTipoDeGasto() {
+      try {
+        const tipoDeGasto = await obtenerTipoDeGasto();
+        setTipoDeGasto(tipoDeGasto);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    cargarTipoDeGasto();
+  }, []);
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    console.log(e.value);
+  }
 
   return (
     <div id="layoutSidenav_content">
@@ -22,9 +45,7 @@ const FormGasto = () => {
                 <div className="card-text">
                   <form>
                     <div className="mb-3">
-                      <label className="form-label">
-                        Ingrese el monto
-                      </label>
+                      <label className="form-label">Ingrese el monto</label>
                       <input
                         type="number"
                         className="form-control"
@@ -38,13 +59,20 @@ const FormGasto = () => {
                         Este dato no es visible para otros usuarios
                       </div>
                     </div>
-                    <select className="form-select" aria-label="Tipo De Gasto">
-                      <option disabled>
-                        Seleccione Un Gasto
-                      </option>
+                    <select className="form-select" aria-label="Tipo De Gasto" defaultValue="">
+                      <option disabled value="">Seleccione un gasto</option>
+                      {tipoDeGasto.map((gasto, index) => (
+                        <option key={index} value={gasto.id_gasto}>
+                          {gasto.descripcion}
+                        </option>
+                      ))}
                     </select>
                     <div className="d-flex justify-content-end">
-                      <button type="submit" className="btn btn-primary mt-3">
+                      <button
+                        // type="submit" 
+                        className="btn btn-primary mt-3"
+                        onClick={handleSend}
+                      >
                         Submit
                       </button>
                     </div>
@@ -57,6 +85,6 @@ const FormGasto = () => {
       </main>
     </div>
   );
-}
+};
 
-export default FormGasto
+export default FormGasto;

@@ -21,8 +21,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Realizar la solicitud POST con fetch
+
     fetch('http://localhost/serverWiseApp/registrarUsuario.php', {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -32,13 +31,13 @@ const Register = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
         console.log(data);
       })
       .catch((error) => {
-        // Manejar errores
         console.error(error);
       });
+
+    window.location.href = '/';
   };
 
   return (

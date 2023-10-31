@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 const CoinRanking = () => {
   const [coins, setCoins] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10); // cantidad de elementos por página
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +35,7 @@ const CoinRanking = () => {
   }, []);
 
   // Obtiene el índice del primer y último elemento de la página actual
+  const itemsPerPage = 10;
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // Obtiene los elementos de la página actual
@@ -79,14 +79,6 @@ const CoinRanking = () => {
                 <th className="align-middle">Market Cap</th>
               </tr>
             </thead>
-            {/* <tfoot>
-              <tr>
-                <th className="align-middle">Rank</th>
-                <th className="align-middle">Name</th>
-                <th className="align-middle">Price</th>
-                <th className="align-middle">Market Cap</th>
-              </tr>
-            </tfoot> */}
             <tbody>
               {currentItems.map((coin) => (
                 <tr key={coin.uuid}>
@@ -112,21 +104,21 @@ const CoinRanking = () => {
             </tbody>
             {/* Botones de paginación */}
           </table>
-            <nav>
-              <ul className="pagination justify-content-center">
-                {pageNumbers.map((number) => (
-                  <li key={number} className="page-item">
-                    <a
-                      onClick={() => paginate(number)}
-                      // href="!#"
-                      className="page-link"
-                    >
-                      {number}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          <nav>
+            <ul className="pagination justify-content-center">
+              {pageNumbers.map((number) => (
+                <li key={number} className="page-item">
+                  <a
+                    onClick={() => paginate(number)}
+                    // href="!#"
+                    className="page-link"
+                  >
+                    {number}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

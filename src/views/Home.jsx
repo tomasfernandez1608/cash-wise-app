@@ -42,7 +42,8 @@ const Home = () => {
     <div id="layoutSidenav_content">
       <main>
         <div className="container-fluid px-4">
-          <h1 className="mt-4">Cashwise App</h1>
+          <h1 className="mt-4 mb-2">Cashwise App</h1>
+          <hr />
           <div className="row mb-3 d-flex justify-content-center g-4 ">
             <div className="col-xl-5">
               <div className="text-center">

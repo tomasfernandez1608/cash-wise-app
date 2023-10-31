@@ -1,51 +1,37 @@
 import { useState, useEffect } from "react";
 import { Login } from "../components/Login";
 import { obtenerOperaciones } from "../services/obtenerOperaciones";
-import { obtenerUsuario } from "../services/obtenerUsuario";
 import Footer from "../components/Footer";
 import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
+import FormGasto from "../components/FormGasto";
 
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
   const [forgotPassword, setForgotPassword] = useState(false);
   const [sessionId, setSessionId] = useState();
-
-  useEffect(() => {
-    async function cargarOperaciones() {
-      try {
-        const operaciones = await obtenerOperaciones();
-        setOperaciones(operaciones);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    cargarOperaciones();
-  }, []);
+  const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
     setSessionId(localStorage.getItem("sessionId"));
   }, [sessionId]);
 
   useEffect(() => {
-    async function cargarUsuario() {
+    async function cargarOperaciones() {
       try {
-        const correo = JSON.parse(localStorage.getItem("correo"));
-        const usuario = await obtenerUsuario(correo);
-        localStorage.setItem("user", JSON.stringify(usuario));
+        const operaciones = await obtenerOperaciones(JSON.parse(localStorage.getItem("user")).idusuario);
+        setOperaciones(operaciones);
       } catch (error) {
         console.log(error);
       }
     }
 
-    if (localStorage.getItem("sessionId")) {
-      cargarUsuario();
+    if (sessionId) {
+      setUsuario(JSON.parse(localStorage.getItem("user")));
+      cargarOperaciones();
     }
+  }, [sessionId]);
 
-  }, []);
-
-  //Olvidar contraseña
   useEffect(() => {
     if (!forgotPassword) {
       setForgotPassword(true);
@@ -76,7 +62,15 @@ const Home = () => {
             <div className="col-sm-5">
               <div className="text-center">
                 {
-                  sessionId ? <p>Usuario logueado</p> : <Login />
+                  sessionId ? (
+                    usuario.admin ? (
+                      <h3>Sos admin</h3>
+                    ) : (
+                      <FormGasto />
+                    )
+                  ) : (
+                    <Login />
+                  )
                 }
               </div>
             </div>

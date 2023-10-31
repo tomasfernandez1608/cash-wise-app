@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { obtenerUsuarios } from '../services/obtenerUsuarios';
+import { obtenerUsuario } from '../services/obtenerUsuario';
 import { MD5 } from 'crypto-js';
 
 export const Login = () => {
@@ -23,14 +24,14 @@ export const Login = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({}),
+        }
       });
 
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("sessionId", JSON.stringify(data));
-        localStorage.setItem("correo", JSON.stringify(usuario));
+        const usuarioEntero = await obtenerUsuario(usuario)
+        localStorage.setItem("user", JSON.stringify(usuarioEntero));
         window.location.reload();
       } else {
         console.log('Error al ejecutar la función PHP');

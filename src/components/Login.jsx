@@ -74,13 +74,13 @@ export const Login = () => {
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-lg-12">
-                  <div className="card shadow-lg border-0 rounded-lg mt-1">
+                  <div className="card shadow-lg border-0 rounded-lg mt-1" style={{ height: "500px" }} >
                     <div className="card-header">
                       <h4 className="text-center font-weight-light my-1">
                         Para acceder a las funciones del sitio, debes iniciar sesión o registrarte.
                       </h4>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body mt-4 ">
                       <h5 className="text-left font-weight-light my-1">
                         Acceso
                       </h5>

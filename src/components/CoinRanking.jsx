@@ -64,7 +64,7 @@ const CoinRanking = () => {
 
   return (
     <div>
-      <div className="card mb-4">
+      <div className="card mb-4 mt-5 ">
         <div className="card-header">
           <i className="fas fa-table me-1"></i>
           Precios y señales de criptomonedas.

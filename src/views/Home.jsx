@@ -44,7 +44,7 @@ const Home = () => {
         <div className="container-fluid px-4">
           <h1 className="mt-4">Cashwise App</h1>
           <div className="row mb-3 d-flex justify-content-center g-4 ">
-            <div className="col-sm-5">
+            <div className="col-xl-5">
               <div className="text-center">
                 {
                   sessionId ? (
@@ -69,17 +69,17 @@ const Home = () => {
                       <div className="card-header">
                         <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                       </div>
-                      <div className="card-body d-flex justify-content-center " style={{ height: "450px" }}>
+                      <div className="card-body d-flex justify-content-center " style={{ height: "500px" }}>
                         <Piechart operaciones={operaciones} />
                       </div>
                     </div>
                   )
                 ) : (
-                  <div className="card">
+                  <div className="card" style={{ height: "500px" }}>
                     <div className="card-header">
                       <h4 className="card-title d-flex justify-content-center">Descripción</h4>
                     </div>
-                    <div className="fs-4 card-body">
+                    <div className="fs-4 card-body d-flex  justify-content-center  align-items-center mx-5 overflow-auto ">
                       Cashwise es una aplicación de gestión de gastos y finanzas
                       personales diseñada para simplificar y fortalecer tu control
                       financiero. Con Cashwise, podes registrar y categorizar fácilmente
@@ -91,6 +91,7 @@ const Home = () => {
                       estabilidad financiera y asegurarte de que tu dinero trabaje para
                       vos.
                     </div>
+                    
                   </div>
                 )
               }

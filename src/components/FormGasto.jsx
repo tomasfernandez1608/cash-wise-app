@@ -41,7 +41,7 @@ const FormGasto = () => {
             Gestor de Gastos
           </h5>
         </div>
-        <div className="card-body d-flex  justify-content-center  align-items-center " style={{ height: "450px" }}>
+        <div className="card-body d-flex  justify-content-center  align-items-center " style={{ height: "500px" }}>
           <div className=" row " >
             <div className=" col-xl-5  mt-4">
               <img

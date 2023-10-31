@@ -83,7 +83,7 @@ const Home = () => {
             </li>
           </ol>
 
-          <div className="row mb-3">
+          <div className="row mb-3 d-flex justify-content-center g-4 ">
             <div className="col-xl-4">
               <div className="text-center">
                 {!logeado ? (
@@ -94,12 +94,12 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="col-xl-5">
+            <div className="col-8">
               <div className="card">
                 <div className="card-header">
-                  <h5 className="card-title">Balance de gastos</h5>
+                  <h5 className="card-title d-flex justify-content-center ">Balance de gastos</h5>
                 </div>
-                <div className="card-body" style={{ maxHeight: "550px" }}>
+                <div className="card-body d-flex justify-content-center " style={{ maxHeight: "550px" }}>
                   <Piechart operaciones={operaciones} />
                 </div>
               </div>

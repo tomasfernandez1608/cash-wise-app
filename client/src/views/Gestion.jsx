@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-
+import FormGasto from "../components/FormGasto"
 const Gestion = () => {
-  const [respuesta, setRespuesta] = useState("");
-
+   const [respuesta, setRespuesta] = useState("");
+  
+//   async function cargarOperaciones() {
+//       try {
+//         const operaciones = await obtenerOperaciones();
+//         setOperaciones(operaciones);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     }
   const ejecutarFuncionPHP = async (idusuario) => {
     try {
       const response = await fetch(
@@ -33,17 +41,14 @@ const Gestion = () => {
   };
 
   return (
-    <div id="layoutSidenav_content">
-      <main className="row d-flex  align-content-center ">
-        <div>
-          <form onSubmit={handleSubmit}>
-            <input id="idusuario" type="text" /> {/* Asegúrate de usar type="text" en el input */}
-            <button type="submit">Enviar</button>
-          </form>
-          <p>{respuesta}</p>
-        </div>
-      </main>
-    </div>
+        <FormGasto/>
+        // <div>
+        //     <form onSubmit={handleSubmit}>
+        //       <input id="idusuario" type="text" />{" "}
+        //       <button type="submit">Enviar</button>
+        //     </form>
+        //     <p>{respuesta}</p>
+        // </div>
   );
 };
 

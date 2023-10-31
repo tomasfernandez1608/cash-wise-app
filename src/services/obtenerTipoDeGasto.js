@@ -1,6 +1,6 @@
 export async function obtenerTipoDeGasto() {
     try {
-        
+
         const API_KEY = 'http://localhost/serverWiseApp/obtenerTipoDeGasto.php';
         const response = await fetch(API_KEY);
 

@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Nav from './components/Nav';
 import './styles.css';
 import { Password } from './components/Password';
+import Historia from './views/Historia';
 
 const App = () => {
   return (
@@ -26,6 +27,11 @@ const App = () => {
               path="/gestion"
               exact
               element={<Gestion />}
+            />
+            <Route
+              path="/historial"
+              exact
+              element={<Historia />}
             />
 
             <Route

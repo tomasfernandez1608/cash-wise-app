@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 
 const FormGasto = () => {
+
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
   console.log(tipoDeGasto);
+
   useEffect(() => {
+
     async function cargarTipoDeGasto() {
       try {
         const tipoDeGasto = await obtenerTipoDeGasto();
@@ -20,7 +23,16 @@ const FormGasto = () => {
 
   const handleSend = (e) => {
     e.preventDefault();
-    console.log(e.value);
+
+    // Crea una instancia de FormData con el evento actual del formulario
+    const formData = new FormData(e.target);
+
+    // Obtén los valores de los campos 'monto' y 'tipo_de_gasto'
+    const monto = formData.get('monto');
+    const tipoDeGasto = formData.get('tipo_de_gasto');
+
+    // Muestra los valores en consola
+    console.log({ monto, tipoDeGasto });
   }
 
   return (
@@ -43,35 +55,45 @@ const FormGasto = () => {
                   Complete los datos, para poder guardar su gasto
                 </p>
                 <div className="card-text">
-                  <form>
+                  <form onSubmit={handleSend}>
                     <div className="mb-3">
                       <label className="form-label">Ingrese el monto</label>
                       <input
                         type="number"
                         className="form-control"
-                        id="Monto"
+                        id="monto"
+                        name="monto"
                         aria-describedby="monto"
                         min={1}
                         step="0.01"
                         max={9999999}
+                        required
                       ></input>
                       <div id="montodesc" className="form-text">
                         Este dato no es visible para otros usuarios
                       </div>
                     </div>
-                    <select className="form-select" aria-label="Tipo De Gasto" defaultValue="">
+                    <select
+                      id="tipo_de_gasto"
+                      name="tipo_de_gasto"
+                      className="form-select"
+                      aria-label="Tipo De Gasto"
+                      defaultValue=""
+                    >
                       <option disabled value="">Seleccione un gasto</option>
-                      {tipoDeGasto.map((gasto, index) => (
+
+                      { tipoDeGasto.map((gasto, index) => (
                         <option key={index} value={gasto.id_gasto}>
                           {gasto.descripcion}
                         </option>
-                      ))}
+                      )) }
+                      
                     </select>
                     <div className="d-flex justify-content-end">
                       <button
-                        // type="submit" //
+                        // type="submit" 
                         className="btn btn-primary mt-3"
-                        onClick={handleSend}
+                        // onClick={handleSend}
                       >
                         Submit
                       </button>

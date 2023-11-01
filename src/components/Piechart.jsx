@@ -105,8 +105,8 @@ const Piechart = ({ operaciones, idUsuario }) => {
     }, [amount, mergedArray])
 
     return (
-        <div style={{ width: '400px' }}>
-            <canvas ref={chartRef} style={{ width: '300px', height: '300px' }}></canvas>
+        <div style={{ width: '500px' }}>
+            <canvas ref={chartRef} style={{ width: '350px', height: '350px' }}></canvas>
             <p>Sueldo mensual: <strong>${parseInt(cliente.sueldomensual)}</strong></p>
             <p>Dinero restante: <strong>${parseInt(cliente.sueldomensual) - gastoActual}</strong></p>
         </div>

@@ -43,7 +43,7 @@ const App = () => {
               element={<About />}
             />
             <Route
-              path="/OlvidoContrasena"
+              path="/olvidoContrasena"
               exact
               element={<Password />}
             />

@@ -43,7 +43,8 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
       if (response.ok) {
         const data = await response.json();
         if (data.mensaje == "true") {
-          cerrarModal(); // Cierra el modal después de editar
+          cerrarModal();
+          window.location.reload();
         } else {
           console.error("Error al editar la operación.");
         }

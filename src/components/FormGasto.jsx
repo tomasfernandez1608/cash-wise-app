@@ -78,7 +78,7 @@ const FormGasto = () => {
         </div>
         <div
           className="card-body d-flex justify-content-center align-items-center"
-          style={{ height: "500px" }}
+          style={{ height: "600px" }}
         >
           <div className="row">
             <div className="col-xl-5 mt-4">

@@ -28,10 +28,11 @@ const HistorialUser = () => {
           body: JSON.stringify({ id_operacion: idOperacion }),
         }
       );
-  
+
       if (response.ok) {
         const responseData = await response.json();
         if (responseData.mensaje === "Se eliminó la operación correctamente") {
+          window.location.reload();
         } else {
           console.error("Error al eliminar la operación.");
         }

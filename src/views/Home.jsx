@@ -40,11 +40,11 @@ const Home = () => {
   }, [forgotPassword]);
 
   return (
-    <div id="layoutSidenav_content">
-      <main>
-        <div className="container-fluid px-4">
-          <div className="row mb-3 d-flex justify-content-center g-4 ">
-            <div className={usuario.admin ? "col-xl-12" : "col-xl-5"}>
+    <div>
+      <main className="m-5">
+        <div className="container-fluid">
+          <div className="row mb-3 d-flex justify-content-center g-4">
+            <div className={usuario.admin ? "col-xl-12" : "col-xl-6"}>
               <div className="text-center">
                 {
                   sessionId ? (
@@ -59,7 +59,7 @@ const Home = () => {
                 }
               </div>
             </div>
-            <div className="col-xl-7">
+            <div className="col-xl-6">
               {
                 sessionId ? (
                   usuario.admin ? (

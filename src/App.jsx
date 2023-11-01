@@ -25,7 +25,7 @@ const App = () => {
           element={<Historia />}
         />
         <Route
-          path="/Categoria"
+          path="/categoria"
           exact
           element={<Categoria />}
         />

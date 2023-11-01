@@ -82,26 +82,6 @@ const Modal = ({ showModal, cerrarModal, gastoAEditar }) => {
                     onChange={(e) => setColor(e.target.value)}
                   />
                 </div>
-                {/* <div className="form-group m-2">
-                  <label className="mb-2 "  htmlFor="tipoGasto">Tipo de Gasto:</label>
-                  <select
-                    id="tipo_de_gasto"
-                    name="tipo_de_gasto"
-                    className="form-select mb-2"
-                    aria-label="Tipo De Gasto"
-                    value={tipoGastoId}
-                    onChange={(e) => setTipoGastoId(e.target.value)}
-                  >
-                    <option disabled value="">
-                      Seleccione un gasto
-                    </option>
-                    {tipoDeGasto.map((gasto) => (
-                      <option key={gasto.id_gasto} value={gasto.id_gasto}>
-                        {gasto.descripcion}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
               </div>
               <div className="modal-footer">
                 <button className="btn btn-secondary" onClick={cerrarModal}>

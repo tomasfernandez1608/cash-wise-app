@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'chart.js/auto';
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
+import { obtenerCliente } from '../services/obtenerCliente';
 
-const Piechart = ({ operaciones }) => {
+const Piechart = ({ operaciones, idUsuario }) => {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
     const [tipoDeGasto, setTipoDeGasto] = useState([]);
+    const [cliente, setCliente] = useState({});
 
     useEffect(() => {
         async function cargarTipoDeGasto() {
@@ -21,7 +23,18 @@ const Piechart = ({ operaciones }) => {
         cargarTipoDeGasto();
     }, []);
 
-    // Crear un objeto para agrupar los montos por tipo_gasto_id
+    useEffect(() => {
+        async function cargarCliente() {
+            try {
+                const cliente = await obtenerCliente(idUsuario);
+                setCliente(cliente);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        cargarCliente();
+    }, [idUsuario]);
+
     const montosAgrupados = operaciones.reduce((result, data) => {
         const tipoGastoId = data.tipo_gasto_id;
         if (!result[tipoGastoId]) {
@@ -38,6 +51,7 @@ const Piechart = ({ operaciones }) => {
     const operacionesFinal = Object.values(montosAgrupados);
 
     const amount = operacionesFinal.map((item) => parseFloat(item.total_monto));
+    const gastoActual = amount.reduce((acumulador, valorActual) => acumulador + valorActual, 0);
 
     const categories = operacionesFinal.map((item) => item.tipo_gasto_id);
     const nombresDeCategorias = categories.map((categoryId) => {
@@ -93,12 +107,15 @@ const Piechart = ({ operaciones }) => {
     return (
         <div style={{ width: '400px' }}>
             <canvas ref={chartRef} style={{ width: '300px', height: '300px' }}></canvas>
+            <p>Sueldo mensual: <strong>${parseInt(cliente.sueldomensual)}</strong></p>
+            <p>Dinero restante: <strong>${parseInt(cliente.sueldomensual) - gastoActual}</strong></p>
         </div>
     )
 }
 
 Piechart.propTypes = {
     operaciones: PropTypes.array.isRequired,
+    idUsuario: PropTypes.number.isRequired
 };
 
 export default Piechart

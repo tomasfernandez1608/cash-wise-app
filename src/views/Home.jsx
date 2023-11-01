@@ -65,16 +65,14 @@ const Home = () => {
               {
                 sessionId ? (
                   usuario.admin ? (
-                    <>
-                      {/* <TablaUsuarios/> */}
-                    </>
+                    null
                   ) : (
                     <div className="card">
                       <div className="card-header">
                         <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                       </div>
                       <div className="card-body d-flex justify-content-center " style={{ height: "500px" }}>
-                        {operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} />}
+                        {operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} idUsuario={usuario.idusuario} />}
                       </div>
                     </div>
                   )
@@ -105,8 +103,7 @@ const Home = () => {
           !usuario.admin ? (
             <CoinRanking />
           ) : (
-            <>
-            </>
+            null
           )
         }
       </main>

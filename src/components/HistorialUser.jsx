@@ -104,7 +104,7 @@ const HistorialUser = () => {
             {operaciones.map((operacion, index) => (
               <tr key={index}>
                 <th scope="row">{operacion.fechaoperacion}</th>
-                <td>{operacion.tipo_gasto_id}</td>
+                <td>{operacion.tipo_gasto_descripcion}</td>
                 <td>{operacion.monto}</td>
                 <td>
                   <div>

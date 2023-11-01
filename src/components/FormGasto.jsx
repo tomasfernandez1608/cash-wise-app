@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 
 const FormGasto = () => {
-  const [tipoDeGasto, setTipoDeGasto] = useState([]);
   const [monto, setMonto] = useState(""); // Agrega estado para el monto
   const [tipoGastoId, setTipoGastoId] = useState(""); // Agrega estado para el tipo de gasto
+  const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
   useEffect(() => {
     async function cargarTipoDeGasto() {

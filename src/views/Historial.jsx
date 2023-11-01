@@ -5,11 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const HistorialUser = () => {
   const [operaciones, setOperaciones] = useState([]);
-  const [idOperacion, setIdOperacion] = useState(null);
   const [operacionAEditar, setOperacionAEditar] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [filtro, setFiltro] = useState("test");
+  const [filtro, setFiltro] = useState("");
   const idusuario = JSON.parse(localStorage.getItem("user")).idusuario;
 
   const editarOperacion = async (operacion) => {
@@ -37,8 +36,7 @@ const HistorialUser = () => {
         const responseData = await response.json();
         console.log(responseData);
         if (responseData) {
-          cargarOperacionesID(responseData.id_operacion);
-          console.log(cargarOperacionesID(responseData.id_operacion));
+          setOperaciones(responseData);
         } else {
           console.error("Error al eliminar la operación.");
         }
@@ -49,7 +47,7 @@ const HistorialUser = () => {
       console.error("Error en la solicitud al servidor:", error);
     }
 
-    //showToast();
+    showToast();
   };
   const showToast = () => {
     toast.info("Operacion eliminada", {
@@ -113,24 +111,24 @@ const HistorialUser = () => {
   //     setLoading(false);
   //   }
   // }
-  useEffect(() => {
-    const cargarOperaciones = async (idOperacion) => {
-      try {
-        const response = await fetch(
-          `http://localhost/serverWiseApp/obtenerOperacionPorID_O.php?idcliente=${idusuario}&&idoperacion=${idOperacion}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setOperaciones(data);
-        } else {
-          console.error("Error al cargar operaciones");
-        }
-      } catch (error) {
-        console.error("Error al cargar operaciones:", error);
-      } finally {
-        setLoading(false);
+  const cargarOperaciones = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost/serverWiseApp/obtenerOperaciones.php?id=${idusuario}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setOperaciones(data);
+      } else {
+        console.error("Error al cargar operaciones");
       }
-    };
+    } catch (error) {
+      console.error("Error al cargar operaciones:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
 
     cargarOperaciones();
   }, [idusuario]);
@@ -144,7 +142,7 @@ const HistorialUser = () => {
       </div>
       <div className="card-body">
         <form id="reporteForm" method="post">
-          <div className="row d-flex justify-content-between  align-items-end ">
+          <div className="row d-flex justify-content-between  align-items-center ">
             <div className="col-sm-3">
               <div className="mb-2">
                 <label className="form-label">Buscar</label>
@@ -167,6 +165,16 @@ const HistorialUser = () => {
                   onClick={() => buscar()}
                 >
                   <i className="fas fa-search"></i>Buscar
+                </button>
+              </div>
+              <div className="mb-2 d-grid">
+                <button
+                  className="btn btn-secondary"
+                  id="btnlimpiar"
+                  type="button"
+                  onClick={() => cargarOperaciones()}
+                >
+                  <i className="fas fa-info"></i>Limpiar
                 </button>
               </div>
             </div>
@@ -196,7 +204,7 @@ const HistorialUser = () => {
                     <td>{operacion.tipo_gasto_descripcion}</td>
                     <td>{operacion.monto}</td>
                     <td>
-                      <div>
+                      <div className="d-flex justify-content-end ">
                         <button
                           className="btn btn-primary btn-sm btn-editar"
                           onClick={() => editarOperacion(operacion)}

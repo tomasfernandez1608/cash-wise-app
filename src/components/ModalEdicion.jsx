@@ -24,7 +24,36 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
 
     cargarTipoDeGasto();
   }, [operacionAEditar]);
+  const handleEditar = async () => {
+    const data = {
+      id_operacion: operacionAEditar.id_operacion,
+      monto: monto,
+      tipo_gasto_id: tipoGastoId,
+    };
+    console.log(data);
+    try {
+      const response = await fetch("http://localhost/serverWiseApp/editarOperacion.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
+      if (response.ok) {
+        const data = await response.json();
+        if (data.mensaje == "true") {
+          cerrarModal(); // Cierra el modal después de editar
+        } else {
+          console.error("Error al editar la operación.");
+        }
+      } else {
+        console.error("Error en la solicitud al servidor.");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud al servidor:", error);
+    }
+  };
   return (
     <div>
       {showModal && (
@@ -73,7 +102,7 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
                 <button className="btn btn-secondary" onClick={cerrarModal}>
                   Cerrar
                 </button>
-                <button className="btn btn-primary">Guardar cambios</button>
+                <button className="btn btn-primary" onClick={handleEditar}>Guardar cambios</button>
               </div>
             </div>
           </div>

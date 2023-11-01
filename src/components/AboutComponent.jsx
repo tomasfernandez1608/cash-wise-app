@@ -41,7 +41,7 @@ const AboutUs = () => {
             <div className="card-body">
               <h2 className="card-title">Tomas Fernandez</h2>
               <p className="card-subtitle text-muted">Art Director</p>
-              <p className="card-text">Como directora de arte, me aseguro de que Cashwise App tenga un diseño atractivo y fácil de usar. ¡Estoy aquí para hacer que tu experiencia sea excelente!</p>
+              <p className="card-text">Como director de arte, me aseguro de que Cashwise App tenga un diseño atractivo y fácil de usar. ¡Estoy aquí para hacer que tu experiencia sea excelente!</p>
             </div>
           </div>
         </div>

@@ -26,7 +26,7 @@ const NavBar = () => {
             <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!" onClick={handleBtn}><i className="fas fa-bars"></i></button>
             <div className="ms-auto"></div>
             {sessionId ? <div className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <button className="btn btn-info ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</button>
+                {/* <button className="btn btn-info ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</button> */}
                 <button className="btn btn-secondary" onClick={cerrarSesion}>Cerrar sesión</button>
             </div> : null}
 

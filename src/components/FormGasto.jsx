@@ -3,8 +3,8 @@ import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 import { ToastContainer, toast } from 'react-toastify';
 
 const FormGasto = () => {
-  const [monto, setMonto] = useState(""); // Agrega estado para el monto
-  const [tipoGastoId, setTipoGastoId] = useState(""); // Agrega estado para el tipo de gasto
+  const [monto, setMonto] = useState("");
+  const [tipoGastoId, setTipoGastoId] = useState(""); 
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
   useEffect(() => {

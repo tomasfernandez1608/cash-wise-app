@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 import ModalEdicion from "./ModalEdicion";
+
 const HistorialUser = () => {
   const [operaciones, setOperaciones] = useState([]);
-  const [operacionAEditar, setOperacionAEditar] = useState([]);
-  const [fechainicio, setFechaInicio] = useState("");
-  const [modalAbierto, setModalAbierto] = useState(false);
-  const [fechafin, setFechaFin] = useState("");
-  const idusuario = JSON.parse(localStorage.getItem("user")).idusuario;
-  console.log(idusuario);
-  useEffect(() => {
-    const editaroperacion = async () =>{
-        setModalAbierto(true);
+  const [operacionAEditar, setOperacionAEditar] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
-    }
-    // Función para cargar operaciones desde el servidor
+  const idusuario = JSON.parse(localStorage.getItem("user")).idusuario;
+
+  const editarOperacion = async (operacion) => {
+    setOperacionAEditar(operacion);
+    setShowModal(true);
+  };
+
+  const cerrarModal = () => {
+    setShowModal(false);
+  };
+
+  useEffect(() => {
     const cargarOperaciones = async () => {
       try {
         const response = await fetch(
@@ -21,7 +25,6 @@ const HistorialUser = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setOperaciones(data);
         } else {
           console.error("Error al cargar operaciones");
@@ -38,12 +41,12 @@ const HistorialUser = () => {
     <div className="card m-5">
       <div className="card-header">
         <i className="fas fa-tags me-1"></i>
-        Historial de Gastos
+        Historial de gastos
       </div>
       <div className="card-body">
         <form id="reporteForm" method="post">
-          <div className="row d-flex  justify-content-center ">
-            <div className="col-sm-3">
+          <div className="row d-flex justify-content-center">
+            {/* <div className="col-sm-3">
               <div className="mb-2">
                 <label className="form-label">Fecha de Inicio:</label>
                 <input
@@ -64,8 +67,8 @@ const HistorialUser = () => {
                   id="inputfechafin"
                 />
               </div>
-            </div>
-            <div className=" d-flex  justify-content-center">
+            </div> 
+            <div className="d-flex justify-content-center">
               <div className="col-sm-2 m-2 ">
                 <div className="mb-2 d-grid ">
                   <button
@@ -77,14 +80,14 @@ const HistorialUser = () => {
                   </button>
                 </div>
               </div>
-              <div className="col-sm-2 m-2 ">
+               <div className="col-sm-2 m-2 ">
                 <div className="mb-2 d-grid">
                   <button className="btn btn-success" type="submit">
                     <i className="fas fa-file-excel"></i>Exportar
                   </button>
                 </div>
-              </div>
-            </div>
+              </div> 
+            </div>*/}
           </div>
         </form>
         <hr />
@@ -108,13 +111,11 @@ const HistorialUser = () => {
                 <td>{operacion.monto}</td>
                 <td>
                   <div>
-                    <button
-                      class="btn btn-primary btn-sm btn-editar" 
-                    >
-                      <i class="fas fa-pen"></i> Editar
+                    <button className="btn btn-primary btn-sm btn-editar" onClick={() => editarOperacion(operacion)}>
+                      <i className="fas fa-pen"></i> Editar
                     </button>
-                    <button class="btn btn-danger btn-sm ms-2 btn-eliminar">
-                      <i class="fas fa-trash"></i> Eliminar
+                    <button className="btn btn-danger btn-sm ms-2 btn-eliminar">
+                      <i className="fas fa-trash"></i> Eliminar
                     </button>
                   </div>
                 </td>
@@ -122,6 +123,7 @@ const HistorialUser = () => {
             ))}
           </tbody>
         </table>
+        <ModalEdicion showModal={showModal} cerrarModal={cerrarModal} operacionAEditar={operacionAEditar} />
       </div>
     </div>
   );

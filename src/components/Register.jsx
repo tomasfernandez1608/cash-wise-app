@@ -53,6 +53,8 @@ const Register = () => {
       .catch((error) => {
         console.error(error);
       });
+
+    showToast();
   };
 
   return (
@@ -65,9 +67,9 @@ const Register = () => {
                 <div className="col-lg-7">
                   <div className="card shadow-lg border-0 rounded-lg mt-5 text-white bg-dark ">
                     <div className="card-header">
-                      <h3 className="text-center font-weight-light my-4">
+                      <h1 className="text-center font-weight-light my-4">
                         Crear cuenta
-                      </h3>
+                      </h1>
                     </div>
                     <div className="card-body">
                       <form onSubmit={handleSubmit}>
@@ -82,6 +84,7 @@ const Register = () => {
                                 name="nombre"
                                 value={formData.nombre}
                                 onChange={handleChange}
+                                required
                               />
                               <label htmlFor="inputNombre">
                                 Ingrese su nombre
@@ -98,6 +101,7 @@ const Register = () => {
                                 name="apellido"
                                 value={formData.apellido}
                                 onChange={handleChange}
+                                required
                               />
                               <label htmlFor="inputApellido">
                                 Ingrese su apellido
@@ -116,6 +120,7 @@ const Register = () => {
                                 name="sueldomensual"
                                 value={formData.sueldomensual}
                                 onChange={handleChange}
+                                required
                               />
                               <label htmlFor="inputSueldo">
                                 Ingrese su sueldo mensual
@@ -134,6 +139,7 @@ const Register = () => {
                                 name="correo"
                                 value={formData.correo}
                                 onChange={handleChange}
+                                required
                               />
                               <label htmlFor="inputEmail">Email</label>
                             </div>
@@ -147,6 +153,7 @@ const Register = () => {
                                 name="clave"
                                 value={formData.clave}
                                 onChange={handleChange}
+                                required
                               />
                               <label htmlFor="inputPassword">Contraseña</label>
                             </div>
@@ -156,7 +163,6 @@ const Register = () => {
                           <div className="d-grid">
                             <button
                               className="btn btn-secondary btn-block"
-                              onClick={showToast}
                             >
                               Crear cuenta
                             </button>

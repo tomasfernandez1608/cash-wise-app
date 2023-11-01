@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Contacto = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,22 @@ const Contacto = () => {
     });
   };
 
+  const showToast = () => {
+    toast.success('Enviado con exito!', {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Realizar la solicitud POST con fetch
     fetch("http://localhost/serverWiseApp/registrarContacto.php", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -27,14 +40,15 @@ const Contacto = () => {
         "Content-Type": "application/json",
       },
     })
-      
+
       .then((response) => response.json())
       .then((data) => {
-        // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
         console.log(data);
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1300);
       })
       .catch((error) => {
-        // Manejar errores
         console.error(error);
       });
   };
@@ -171,9 +185,22 @@ const Contacto = () => {
               <button
                 type="submit"
                 className="btn btn-outline-dark align-items-end"
+                onClick={showToast}
               >
                 Enviar
               </button>
+              <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
             </div>
           </form>
         </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
+import { ToastContainer, toast } from 'react-toastify';
 
 const FormGasto = () => {
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
@@ -18,6 +19,19 @@ const FormGasto = () => {
 
     cargarTipoDeGasto();
   }, []);
+
+  const showToast = () => {
+    toast('Gasto ingresado exitosamente!', {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -43,7 +57,9 @@ const FormGasto = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData);
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1300);
       } else {
         console.error("Error en la solicitud al servidor");
       }
@@ -57,7 +73,7 @@ const FormGasto = () => {
       <div className="card">
         <div className="card-header">
           <h5 className="card-title d-flex justify-content-center">
-            Gestor de Gastos
+            Gestor de gastos
           </h5>
         </div>
         <div
@@ -93,8 +109,8 @@ const FormGasto = () => {
                         step="0.01"
                         max={9999999}
                         required
-                        value={monto} // Asocia el valor al estado monto
-                        onChange={(e) => setMonto(e.target.value)} // Actualiza el estado monto
+                        value={monto}
+                        onChange={(e) => setMonto(e.target.value)}
                       ></input>
                       <div id="montodesc" className="form-text">
                         Este dato no es visible para otros usuarios
@@ -105,8 +121,8 @@ const FormGasto = () => {
                       name="tipo_de_gasto"
                       className="form-select"
                       aria-label="Tipo De Gasto"
-                      value={tipoGastoId} // Asocia el valor al estado tipoGastoId
-                      onChange={(e) => setTipoGastoId(e.target.value)} // Actualiza el estado tipoGastoId
+                      value={tipoGastoId}
+                      onChange={(e) => setTipoGastoId(e.target.value)}
                     >
                       <option disabled value="">
                         Seleccione un gasto
@@ -118,9 +134,21 @@ const FormGasto = () => {
                       ))}
                     </select>
                     <div className="d-flex justify-content-end">
-                      <button type="submit" className="btn btn-primary mt-3">
+                      <button type="submit" className="btn btn-primary mt-3" onClick={showToast}>
                         Submit
                       </button>
+                      <ToastContainer
+                        position="top-right"
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                      />
                     </div>
                   </form>
                 </div>

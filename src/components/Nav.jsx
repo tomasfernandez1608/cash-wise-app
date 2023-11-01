@@ -33,6 +33,15 @@ const Nav = () => {
                             </>
                         ) : null}
 
+                        {!sessionId ? (
+                            <Link className="nav-link text-white" to="/registro">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fas fa-user"></i>
+                                </div>
+                                Registrarse
+                            </Link>
+                        ) : null}
+
                         <div className="sb-sidenav-menu-heading text-white">Nosotros</div>
                         <Link className="nav-link " to="/nosotros">
                             <div className="sb-nav-link-icon">

@@ -57,7 +57,6 @@ const App = () => {
               exact
               element={<Password />}
             />
-            
           </Routes>
         </div>
       </div>

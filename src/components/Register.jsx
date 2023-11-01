@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from "./Footer";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,19 @@ const Register = () => {
     });
   };
 
+  const showToast = () => {
+    toast.success('Usuario registrado exitosamente!', {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -32,12 +46,13 @@ const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1200);
       })
       .catch((error) => {
         console.error(error);
       });
-
-    window.location.href = '/';
   };
 
   return (
@@ -141,9 +156,22 @@ const Register = () => {
                           <div className="d-grid">
                             <button
                               className="btn btn-secondary btn-block"
+                              onClick={showToast}
                             >
                               Crear cuenta
                             </button>
+                            <ToastContainer
+                              position="top-right"
+                              autoClose={3000}
+                              hideProgressBar={false}
+                              newestOnTop={false}
+                              closeOnClick
+                              rtl={false}
+                              pauseOnFocusLoss
+                              draggable
+                              pauseOnHover
+                              theme="light"
+                            />
                           </div>
                         </div>
                       </form>

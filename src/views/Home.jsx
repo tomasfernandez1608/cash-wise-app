@@ -51,7 +51,7 @@ const Home = () => {
                 {
                   sessionId ? (
                     usuario.admin ? (
-                      <TablaUsuarios/>
+                      <TablaUsuarios />
                     ) : (
                       <FormGasto />
                     )
@@ -74,7 +74,7 @@ const Home = () => {
                         <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                       </div>
                       <div className="card-body d-flex justify-content-center " style={{ height: "500px" }}>
-                        <Piechart operaciones={operaciones} />
+                        {operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} />}
                       </div>
                     </div>
                   )
@@ -95,7 +95,6 @@ const Home = () => {
                       estabilidad financiera y asegurarte de que tu dinero trabaje para
                       vos.
                     </div>
-                    
                   </div>
                 )
               }

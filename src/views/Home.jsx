@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Login } from "../components/Login";
 import { obtenerOperaciones } from "../services/obtenerOperaciones";
 import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
@@ -53,7 +52,7 @@ const Home = () => {
                       <FormGasto />
                     )
                   ) : (
-                    <Login />
+                    <img src="https://www.mundodeportivo.com/urbantecno/hero/2023/04/asi-puedes-hacer-un-excel-de-gastos-e-ingresos-de-forma-sencilla.jpg?width=1200" style={{ height: "100%" }} />
                   )
                 }
               </div>

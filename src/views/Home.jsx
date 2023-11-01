@@ -41,7 +41,7 @@ const Home = () => {
 
   return (
     <div id="layoutSidenav_content">
-      <main>
+      <main className="mt-5 mx-5">
         <div className="container-fluid px-4">
           <div className="row mb-3 d-flex justify-content-center g-4 ">
             <div className={usuario.admin ? "col-xl-12" : "col-xl-5"}>

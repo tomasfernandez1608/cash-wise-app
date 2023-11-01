@@ -32,7 +32,7 @@ const Login = () => {
                 localStorage.setItem("sessionId", JSON.stringify(data));
                 const usuarioEntero = await obtenerUsuario(usuario)
                 localStorage.setItem("user", JSON.stringify(usuarioEntero));
-                window.location.reload();
+                window.location.href = '/';
             } else {
                 console.log('Error al ejecutar la función PHP');
             }
@@ -67,83 +67,76 @@ const Login = () => {
     };
 
     return (
-        <>
-            <div>
-                <main>
-                    <div className="container">
-                        <div className="row justify-content-center">
-                            <div className="col-lg-12">
-                                <div className="card shadow-lg border-0 rounded-lg mt-1" style={{ height: "500px" }} >
-                                    <div className="card-header">
-                                        <h4 className="text-center font-weight-light my-1">
-                                            Para acceder a las funciones del sitio, debes iniciar sesión o registrarte.
-                                        </h4>
-                                    </div>
-                                    <div className="card-body mt-4 ">
-                                        <h5 className="text-left font-weight-light my-1">
-                                            Acceso
-                                        </h5>
-                                        <form onSubmit={handleInicioSesion}>
-                                            <div className="form-floating mb-1">
-                                                <input
-                                                    className="form-control"
-                                                    id="inputEmail"
-                                                    type="email"
-                                                    placeholder="name@example.com"
-                                                    name='login'
-                                                    value={usuario}
-                                                    onChange={(e) => setUsuario(e.target.value)}
-                                                />
-                                                <label htmlFor="inputEmail">Email</label>
-                                            </div>
-                                            <div className="form-floating mb-3">
-                                                <input
-                                                    className="form-control"
-                                                    id="inputPassword"
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    name='password'
-                                                    value={contrasena}
-                                                    onChange={(e) => setContrasena(e.target.value)}
-                                                />
-                                                <label htmlFor="inputPassword">Contraseña</label>
-                                            </div>
-                                            <div className="form-floating mb-1">
-                                                <button type='submit' className="btn btn-dark btn-login" id='ingresar'>
-                                                    Iniciar sesión
-                                                </button>
-                                            </div>
-                                            {
-                                                respuesta != '' ? (
-                                                    <>
-                                                        <h3 className="red-text">{respuesta}</h3>
-                                                    </>
-                                                ) : (
-                                                    null
-                                                )
-                                            }
-                                            <div>
-                                            </div>
-                                            <div className="d-flex align-items-center justify-content-end mt-4 mb-0">
-                                                <Link className="small" to="/olvidoContrasena">
-                                                    ¿Olvidó su contraseña?
-                                                </Link>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div className="card-footer text-center py-3">
-                                        <div>
-                                            <Link to="/registro">¿Necesita una cuenta? ¡Registrese!</Link>
-                                        </div>
-                                    </div>
+        <main className="container mt-5">
+            <div className="row justify-content-center">
+                <div className="col-lg-7">
+                    <div className="card border border-5 rounded-sm mt-5" style={{ height: "500px" }} >
+                        <div className="card-header">
+                            <h1 className="text-center">
+                                Iniciar sesión
+                            </h1>
+                            <p className="text-center font-weight-light my-1 fs-5">
+                                Para acceder a las funciones del sitio, debes iniciar sesión o registrarte.
+                            </p>
+                        </div>
+                        <div className="card-body mt-3">
+                            <form onSubmit={handleInicioSesion}>
+                                <div className="form-floating mb-1">
+                                    <input
+                                        className="form-control"
+                                        id="inputEmail"
+                                        type="email"
+                                        placeholder="name@example.com"
+                                        name='login'
+                                        value={usuario}
+                                        onChange={(e) => setUsuario(e.target.value)}
+                                    />
+                                    <label htmlFor="inputEmail">Email</label>
                                 </div>
+                                <div className="form-floating mb-3">
+                                    <input
+                                        className="form-control"
+                                        id="inputPassword"
+                                        type="password"
+                                        placeholder="Password"
+                                        name='password'
+                                        value={contrasena}
+                                        onChange={(e) => setContrasena(e.target.value)}
+                                    />
+                                    <label htmlFor="inputPassword">Contraseña</label>
+                                </div>
+                                <div className="form-floating mb-1">
+                                    <button type='submit' className="btn btn-dark btn-login" id='ingresar'>
+                                        Iniciar sesión
+                                    </button>
+                                </div>
+                                {
+                                    respuesta != '' ? (
+                                        <>
+                                            <h3 className="red-text">{respuesta}</h3>
+                                        </>
+                                    ) : (
+                                        null
+                                    )
+                                }
+                                <div>
+                                </div>
+                                <div className="d-flex align-items-center justify-content-end mt-4 mb-0">
+                                    <Link className="small" to="/olvidoContrasena">
+                                        ¿Olvidó su contraseña?
+                                    </Link>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="card-footer text-center py-3">
+                            <div>
+                                <Link to="/registro">¿Necesita una cuenta? ¡Registrese!</Link>
                             </div>
                         </div>
                     </div>
-                </main>
-
+                </div>
             </div>
-        </>
+        </main>
     );
 };
 

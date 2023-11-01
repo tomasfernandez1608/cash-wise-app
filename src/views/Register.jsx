@@ -110,7 +110,7 @@ const Register = () => {
                       <input
                         className="form-control"
                         id="sueldomensual"
-                        type="text"
+                        type="number"
                         placeholder="Ingrese su sueldo mensual"
                         name="sueldomensual"
                         value={formData.sueldomensual}
@@ -145,6 +145,7 @@ const Register = () => {
                         className="form-control"
                         id="clave"
                         type="password"
+                        placeholder='123'
                         name="clave"
                         value={formData.clave}
                         onChange={handleChange}

@@ -89,9 +89,9 @@ const CategoriaAdmin = () => {
         >
           <thead>
             <tr>
-              <th scope="col">Id_Gasto</th>
-              <th scope="col">descripcion</th>
-              <th scope="col">color</th>
+              <th scope="col">ID_Gasto</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Color</th>
               <th scope="col"></th>
             </tr>
           </thead>

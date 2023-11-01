@@ -2,28 +2,25 @@ import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 
 const Modal = ({ showModal, cerrarModal, gastoAEditar }) => {
-  const [descripcion, setdescripcion] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   const [color, setColor] = useState('');
   const [tipoGastoId, setTipoGastoId] = useState("");
-  const [tipoDeGasto, setTipoDeGasto] = useState("");
 
-  
-  
   useEffect(() => {
     if (gastoAEditar) {
       setColor(gastoAEditar.color);
-      setdescripcion(gastoAEditar.descripcion);
+      setDescripcion(gastoAEditar.descripcion);
       setTipoGastoId(gastoAEditar.id_gasto);
     }
   }, [gastoAEditar]);
-  
+
   const handleEditar = async () => {
     const data = {
-      id_gasto: gastoAEditar.id_gasto,
+      id_gasto: tipoGastoId,
       descripcion: descripcion,
       color: color,
     };
-    console.log(data);
+
     try {
       const response = await fetch("http://localhost/serverWiseApp/editarGasto.php", {
         method: "POST",
@@ -48,7 +45,7 @@ const Modal = ({ showModal, cerrarModal, gastoAEditar }) => {
       console.error("Error en la solicitud al servidor:", error);
     }
   };
-  
+
   return (
     <div>
       {showModal && (
@@ -62,19 +59,18 @@ const Modal = ({ showModal, cerrarModal, gastoAEditar }) => {
               <div className="modal-body">
                 <input type="hidden" name="id_gasto" value={gastoAEditar.id_gasto} />
                 <div className="form-group m-2">
-                  <label className="mb-2 "   htmlFor="descripcion">Descripcion:</label>
+                  <label className="mb-2" htmlFor="descripcion">Descripcion:</label>
                   <input
                     type="text"
                     className="form-control mb-2"
                     id="descripcion"
                     value={descripcion}
-                    onChange={(e) => setdescripcion(e.target.value)}
+                    onChange={(e) => setDescripcion(e.target.value)}
                   />
                 </div>
                 <div className="form-group m-2">
                   <label className="mb-2 " htmlFor="color">Color:</label>
                   <input
-                    
                     type="color"
                     className="form-control mb-2"
                     id="color"

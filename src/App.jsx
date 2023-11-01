@@ -3,9 +3,10 @@ import Home from "./views/Home";
 import About from './views/About';
 import Contact from './views/Contact';
 import Register from './views/Register';
-import Historia from './views/Historia';
+import Historia from './views/Historial';
 import Categoria from './views/Categoria';
 import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer';
 import { Password } from './components/Password';
 import './styles.css';
 
@@ -50,6 +51,7 @@ const App = () => {
           element={<Password />}
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

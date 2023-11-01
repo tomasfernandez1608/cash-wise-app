@@ -4,6 +4,7 @@ import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
 import TablaUsuarios from "../components/TablaUsuarios";
 import FormGasto from "../components/FormGasto";
+import Descripcion from "../components/Descripcion";
 
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
@@ -18,7 +19,9 @@ const Home = () => {
   useEffect(() => {
     async function cargarOperaciones() {
       try {
-        const operaciones = await obtenerOperaciones(JSON.parse(localStorage.getItem("user")).idusuario);
+        const operaciones = await obtenerOperaciones(
+          JSON.parse(localStorage.getItem("user")).idusuario
+        );
         setOperaciones(operaciones);
       } catch (error) {
         console.log(error);
@@ -41,67 +44,49 @@ const Home = () => {
     <div>
       <main className="m-5">
         <div className="container-fluid">
-          <div className="row mb-3 d-flex justify-content-center g-4">
+          <div className="row  d-flex justify-content-center">
             <div className={usuario.admin ? "col-xl-12" : "col-xl-6"}>
               <div className="text-center">
-                {
-                  sessionId ? (
-                    usuario.admin ? (
-                      <TablaUsuarios />
-                    ) : (
-                      <FormGasto />
-                    )
-                  ) : (
-                    <img src="https://www.mundodeportivo.com/urbantecno/hero/2023/04/asi-puedes-hacer-un-excel-de-gastos-e-ingresos-de-forma-sencilla.jpg?width=1200" style={{ height: "100%" }} />
-                  )
-                }
-              </div>
-            </div>
-            <div className="col-xl-6">
-              {
-                sessionId ? (
+                {sessionId ? (
                   usuario.admin ? (
-                    null
+                    <TablaUsuarios />
                   ) : (
-                    <div className="card">
-                      <div className="card-header">
-                        <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
-                      </div>
-                      <div className="card-body d-flex justify-content-center " style={{ height: "600px" }}>
-                        {(operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} idUsuario={usuario.idusuario} />)}
-                      </div>
-                    </div>
+                    <FormGasto />
                   )
                 ) : (
-                  <div className="card" style={{ height: "500px" }}>
-                    <div className="card-header">
-                      <h4 className="card-title d-flex justify-content-center">Descripción</h4>
-                    </div>
-                    <div className="fs-4 card-body d-flex justify-content-center align-items-center mx-5 overflow-auto">
-                      Cashwise es una aplicación de gestión de gastos y finanzas
-                      personales diseñada para simplificar y fortalecer tu control
-                      financiero. Con Cashwise, podes registrar y categorizar fácilmente
-                      tus ingresos y gastos, establecer presupuestos personalizados y
-                      hacer un seguimiento de tus metas de ahorro. La interfaz intuitiva
-                      y las poderosas herramientas de visualización te permiten entender
-                      tus patrones de gasto y tomar decisiones financieras más
-                      inteligentes. Cashwise es tu socio confiable para alcanzar la
-                      estabilidad financiera y asegurarte de que tu dinero trabaje para
-                      vos.
-                    </div>
+                  null
+                )}
+              </div>
+            </div>
+
+            <div className={!sessionId ? "col-xl-12" : "col-xl-6"}>
+              {sessionId ? usuario.admin ? null : (
+                <div className="card">
+                  <div className="card-header">
+                    <h5 className="card-title d-flex justify-content-center">
+                      Balance de gastos
+                    </h5>
                   </div>
-                )
+                  <div
+                    className="card-body d-flex justify-content-center "
+                    style={{ height: "600px" }}
+                  >
+                    {operaciones.length == 0 ? (
+                      <h3>No tiene gastos ingresados.</h3>
+                    ) : (
+                      <Piechart
+                        operaciones={operaciones}
+                        idUsuario={usuario.idusuario}
+                      />
+                    )}
+                  </div>
+                </div>
+              ) : <Descripcion />
               }
             </div>
           </div>
         </div>
-        {
-          !usuario.admin ? (
-            <CoinRanking />
-          ) : (
-            null
-          )
-        }
+        {!usuario.admin ? <CoinRanking /> : null}
       </main>
     </div>
   );

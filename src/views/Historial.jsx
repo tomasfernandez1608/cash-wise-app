@@ -46,9 +46,8 @@ const HistorialUser = () => {
     } catch (error) {
       console.error("Error en la solicitud al servidor:", error);
     }
-
-    showToast();
   };
+
   const showToast = () => {
     toast.info("Operacion eliminada", {
       position: "top-right",
@@ -93,24 +92,7 @@ const HistorialUser = () => {
 
     showToast();
   };
-  // const cargarOperacionesID = async ($id) =>{
 
-  //   try {
-  //     const response = await fetch(
-  //       `http://localhost/serverWiseApp/obtenerOperacionPorID_O.php?id=1`
-  //     );
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setOperaciones((prevOperaciones) => [...prevOperaciones, data]);
-  //     } else {
-  //       console.error("Error al cargar operaciones");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al cargar operaciones:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
   const cargarOperaciones = async () => {
     try {
       const response = await fetch(
@@ -164,7 +146,7 @@ const HistorialUser = () => {
                   type="button"
                   onClick={() => buscar()}
                 >
-                  <i className="fas fa-search"></i>Buscar
+                  Buscar <i className="fas fa-search"></i>
                 </button>
               </div>
               <div className="mb-2 d-grid">
@@ -174,7 +156,7 @@ const HistorialUser = () => {
                   type="button"
                   onClick={() => cargarOperaciones()}
                 >
-                  <i className="fas fa-info"></i>Limpiar
+                  Limpiar <i className="fa-solid fa-broom"></i>
                 </button>
               </div>
             </div>

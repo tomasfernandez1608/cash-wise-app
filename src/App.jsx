@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./views/Home";
 import About from './views/About';
-import Gestion from "./views/Gestion";
 import Contact from './views/Contact';
 import Register from './views/Register';
 import NavBar from './components/NavBar';
@@ -24,34 +23,25 @@ const App = () => {
               element={<Home />}
             />
             <Route
-              path="/gestion"
-              exact
-              element={<Gestion />}
-            />
-            <Route
               path="/historial"
               exact
               element={<Historia />}
             />
-
             <Route
               path="/registro"
               exact
               element={<Register />}
             />
-
             <Route
               path="/contacto"
               exact
               element={<Contact />}
             />
-
             <Route
               path="/nosotros"
               exact
               element={<About />}
             />
-
             <Route
               path="/OlvidoContrasena"
               exact

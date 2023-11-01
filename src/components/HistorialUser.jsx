@@ -16,7 +16,32 @@ const HistorialUser = () => {
   const cerrarModal = () => {
     setShowModal(false);
   };
-
+  const eliminarOperacion = async (idOperacion) => {
+    try {
+      const response = await fetch(
+        `http://localhost/serverWiseApp/eliminarOperacion.php`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id_operacion: idOperacion }),
+        }
+      );
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        if (responseData.mensaje === "Se eliminó la operación correctamente") {
+        } else {
+          console.error("Error al eliminar la operación.");
+        }
+      } else {
+        console.error("Error en la solicitud al servidor.");
+      }
+    } catch (error) {
+      console.error("Error en la solicitud al servidor:", error);
+    }
+  };
   useEffect(() => {
     const cargarOperaciones = async () => {
       try {
@@ -114,7 +139,7 @@ const HistorialUser = () => {
                     <button className="btn btn-primary btn-sm btn-editar" onClick={() => editarOperacion(operacion)}>
                       <i className="fas fa-pen"></i> Editar
                     </button>
-                    <button className="btn btn-danger btn-sm ms-2 btn-eliminar">
+                    <button className="btn btn-danger btn-sm ms-2 btn-eliminar" onClick={() => eliminarOperacion(operacion.id_operacion)}>
                       <i className="fas fa-trash"></i> Eliminar
                     </button>
                   </div>

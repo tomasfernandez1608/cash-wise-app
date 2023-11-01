@@ -37,10 +37,11 @@ const CategoriaAdmin = () => {
 
       if (response.ok) {
         const responseData = await response.json();
-        if (responseData.mensaje === "Se eliminó la operación correctamente") {
+        if (responseData.mensaje === "true") {
           window.location.reload();
         } else {
           console.error("Error al eliminar la operación.");
+          alert(responseData.mensaje);
         }
       } else {
         console.error("Error en la solicitud al servidor.");

@@ -46,7 +46,7 @@ const TablaUsuarios = () => {
             <table id="datatablesSimple" className="table">
               <thead>
                 <tr>
-                  <th className="align-middle">Id</th>
+                  <th className="align-middle">ID</th>
                   <th className="align-middle">Nombre</th>
                   <th className="align-middle">Apellido</th>
                   <th className="align-middle">Correo</th>

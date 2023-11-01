@@ -69,7 +69,6 @@ export const Login = () => {
   return (
     <>
       <div>
-        <div id="layoutAuthentication_content">
           <main>
             <div className="container">
               <div className="row justify-content-center">
@@ -110,7 +109,7 @@ export const Login = () => {
                           <label htmlFor="inputPassword">Contraseña</label>
                         </div>
                         <div className="form-floating mb-1">
-                          <button type='submit' className="btn btn-primary btn-login" id='ingresar'>
+                          <button type='submit' className="btn btn-dark btn-login" id='ingresar'>
                             Iniciar sesión
                           </button>
                         </div>
@@ -142,7 +141,7 @@ export const Login = () => {
               </div>
             </div>
           </main>
-        </div>
+     
       </div>
     </>
   );

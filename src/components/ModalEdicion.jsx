@@ -47,7 +47,7 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
     };
 
     try {
-      const response = await fetch("http://localhost/serverWiseApp/ditarOperacion.php", {
+      const response = await fetch("http://localhost/serverWiseApp/editarOperacion.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

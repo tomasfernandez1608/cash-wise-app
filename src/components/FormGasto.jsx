@@ -87,7 +87,7 @@ const FormGasto = () => {
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/eco-gm.appspot.com/o/Fotos_Producto%2Fpresupuesto.png?alt=media&token=0b7d92a3-1172-4556-8f79-8cfcac0eb8bb&_gl=1*s7zmfr*_ga*MjAzOTcxOTU0My4xNjk3MTMwODQ4*_ga_CW55HF8NVT*MTY5ODcwODQ2MS45LjEuMTY5ODcwODQ3Mi40OS4w.LjA."
                 className="img-fluid rounded-start"
-                alt="..."
+                alt="Finanzas"
                 style={{ width: 200, height: 200 }}
               ></img>
             </div>
@@ -108,11 +108,12 @@ const FormGasto = () => {
                         name="monto"
                         aria-describedby="monto"
                         min={1}
-                        step="0.01"
+                        step="1"
                         max={9999999}
                         required
                         value={monto}
                         onChange={(e) => setMonto(e.target.value)}
+                        placeholder="$3000"
                       ></input>
                       <div id="montodesc" className="form-text">
                         Este dato no es visible para otros usuarios

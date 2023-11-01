@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="py-4 bg-light mt-auto">
+        <footer className="py-4 mt-5">
             <div className="container-fluid px-4">
                 <div className="d-flex align-items-center justify-content-between small">
                     <div className="text-muted">Copyright &copy; Cashwise App 2023</div>

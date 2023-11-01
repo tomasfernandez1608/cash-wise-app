@@ -28,7 +28,6 @@
     text-decoration: none;
 }
 
-.navbar ul li a:hover,
 .nav li a:hover {
     color: #FA8072;
 }
@@ -73,7 +72,7 @@
 }
 
 .active {
-    color: #FA8072 !important;
+    color: #FA8072;
 }
 
 .banner {

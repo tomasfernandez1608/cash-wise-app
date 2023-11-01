@@ -27,14 +27,27 @@ const NavBar = () => {
                             <p>App</p>
                         </div>
                     </Link>
-                    {sessionId ? <ul>
-                        <li>
-                            <button className="btn btn-secondary ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</button>
-                        </li>
-                        <li>
-                            <button className="btn btn-danger" onClick={cerrarSesion}>Cerrar sesión</button>
-                        </li>
-                    </ul> : null}
+                    <ul>
+                        {
+                            sessionId
+                                ? <>
+                                    <li>
+                                        <button className="btn btn-secondary ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</button>
+                                    </li>
+                                    <li>
+                                        <button className="btn btn-danger" onClick={cerrarSesion}>Cerrar sesión</button>
+                                    </li>
+                                </>
+                                : <>
+                                    <li>
+                                        <Link to='/login' className="btn btn-secondary ms-auto ms-md-0 me-3 me-lg-3">Iniciar sesión</Link>
+                                    </li>
+                                    <li>
+                                        <Link to='/registro' className="btn btn-primary">Registrarse</Link>
+                                    </li>
+                                </>
+                        }
+                    </ul>
                 </div>
                 <ul className='nav'>
                     <li><NavLink to="/">Inicio</NavLink></li>
@@ -48,9 +61,6 @@ const NavBar = () => {
                     }
                     <li><NavLink to="/nosotros">¿Quiénes somos?</NavLink></li>
                     <li><NavLink to="/contacto">Contacto</NavLink></li>
-                    {!sessionId ? (
-                        <li><NavLink to="/registro">Registrarse</NavLink></li>
-                    ) : null}
                 </ul>
             </nav>
         </header>

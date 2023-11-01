@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Chart from 'chart.js/auto';
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 import { obtenerCliente } from '../services/obtenerCliente';
+import Loading from './Loading/Loading';
 
 const Piechart = ({ operaciones, idUsuario }) => {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
     const [tipoDeGasto, setTipoDeGasto] = useState([]);
     const [cliente, setCliente] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function cargarTipoDeGasto() {
@@ -17,6 +19,8 @@ const Piechart = ({ operaciones, idUsuario }) => {
                 setTipoDeGasto(tipoDeGasto);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -56,59 +60,59 @@ const Piechart = ({ operaciones, idUsuario }) => {
     const categories = operacionesFinal.map((item) => item.tipo_gasto_id);
     const nombresDeCategorias = categories.map((categoryId) => {
         const tipo = tipoDeGasto.find((tipo) => tipo.id_gasto === categoryId);
-        return tipo ? tipo.descripcion : 'Tipo no encontrado';
+        return tipo ? [tipo.descripcion, tipo.color] : 'Cargando...';
     });
 
-    const mergedArray = nombresDeCategorias.map((category, index) => `${category}: $${amount[index]}`);
+    const colores = nombresDeCategorias.map(category => category[1])
+    const mergedArray = nombresDeCategorias.map((category, index) => `${category[0]}: $${amount[index]}`);
 
     useEffect(() => {
-        if (chartInstance.current) {
-            chartInstance.current.destroy()
-        }
-        const myChartRef = chartRef.current.getContext('2d')
+        if (!loading) {
+            if (chartInstance.current) {
+                chartInstance.current.destroy()
+            }
+            const myChartRef = chartRef.current.getContext('2d')
 
-        chartInstance.current = new Chart(myChartRef, {
-            type: 'doughnut',
-            data: {
-                labels: mergedArray,
-                datasets: [{
-                    label: false,
-                    data: amount,
-                    backgroundColor: [
-                        'rgb(255, 205, 86)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 99, 132)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)',
-                        'rgb(201, 203, 207)',
-                        'rgb(255, 159, 64)',
-                        'rgb(121, 85, 70)',
-                    ],
-                    hoverOffset: 10
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right',
-                        onClick: () => { }
-                    },
+            chartInstance.current = new Chart(myChartRef, {
+                type: 'doughnut',
+                data: {
+                    labels: mergedArray,
+                    datasets: [{
+                        label: false,
+                        data: amount,
+                        backgroundColor: colores,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            onClick: () => { }
+                        },
+                    }
+                }
+            })
+            return () => {
+                if (chartInstance.current) {
+                    chartInstance.current.destroy();
                 }
             }
-        })
-        return () => {
-            if (chartInstance.current) {
-                chartInstance.current.destroy();
-            }
         }
-    }, [amount, mergedArray])
+    }, [loading, amount, mergedArray, colores])
 
     return (
         <div style={{ width: '500px' }}>
-            <canvas ref={chartRef} style={{ width: '350px', height: '350px' }}></canvas>
-            <p>Sueldo mensual: <strong>${parseInt(cliente.sueldomensual)}</strong></p>
-            <p>Dinero restante: <strong>${parseInt(cliente.sueldomensual) - gastoActual}</strong></p>
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <canvas ref={chartRef} style={{ width: '350px', height: '350px' }}></canvas>
+                    <p>Sueldo mensual: <strong>${parseInt(cliente.sueldomensual)}</strong></p>
+                    <p>Dinero restante: <strong>${parseInt(cliente.sueldomensual) - gastoActual}</strong></p>
+                </>
+            )}
         </div>
     )
 }

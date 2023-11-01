@@ -72,7 +72,7 @@ const Home = () => {
                         <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                       </div>
                       <div className="card-body d-flex justify-content-center " style={{ height: "600px" }}>
-                        {operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} idUsuario={usuario.idusuario} />}
+                        {(operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} idUsuario={usuario.idusuario} />)}
                       </div>
                     </div>
                   )

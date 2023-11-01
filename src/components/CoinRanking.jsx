@@ -63,7 +63,7 @@ const CoinRanking = () => {
   };
 
   return (
-    <div>
+    <div className="container-fluid">
       <div className="card mb-4 mt-5 ">
         <div className="card-header">
           <i className="fas fa-table me-1"></i>

@@ -26,7 +26,7 @@ const AboutUs = () => {
       <div className="row">
         <div className="col-lg-4">
           <div className="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/74/74233.png" alt="Ramiro" className="card-img-top" />
+            <img src="https://media.licdn.com/dms/image/C4E03AQGymrqhPE17Ig/profile-displayphoto-shrink_800_800/0/1617919422043?e=2147483647&v=beta&t=HeSyg5P5Icn4s1SSdS5a90n1UpvV1dKq0R7ll0mTk9E" alt="Ramiro" className="card-img-top" />
             <div className="card-body">
               <h2 className="card-title">Ramiro Tanquias</h2>
               <p className="card-subtitle text-muted">CEO & Founder</p>
@@ -48,7 +48,7 @@ const AboutUs = () => {
 
         <div className="col-lg-4">
           <div className="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/74/74233.png" alt="Mariano" className="card-img-top" />
+            <img src="https://media.licdn.com/dms/image/D4D03AQGQ5q4sphIyPw/profile-displayphoto-shrink_800_800/0/1668626572969?e=1704326400&v=beta&t=-RAuOOJgJfmrv8iZGaRP7_PWgLZ4yim3aZSvdO3PiA4" alt="Mariano" className="card-img-top" />
             <div className="card-body">
               <h2 className="card-title">Mariano Macias</h2>
               <p className="card-subtitle text-muted">Designer</p>

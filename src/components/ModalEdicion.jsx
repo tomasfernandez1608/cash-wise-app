@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
-import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
   const [monto, setMonto] = useState(0);
-  const [color, setColor] = useState('#000000');
   const [tipoGastoId, setTipoGastoId] = useState("");
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
@@ -45,9 +44,8 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
       id_operacion: operacionAEditar.id_operacion,
       monto: monto,
       tipo_gasto_id: tipoGastoId,
-      color: color,
     };
-    console.log(data);
+
     try {
       const response = await fetch("http://localhost/serverWiseApp/ditarOperacion.php", {
         method: "POST",
@@ -90,7 +88,7 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
                 <input type="hidden" name="id_operacion" value={operacionAEditar.id_operacion} />
                 <input type="hidden" name="tipo_gasto_id" value={operacionAEditar.tipo_gasto_id} />
                 <div className="form-group m-2">
-                  <label className="mb-2 "   htmlFor="monto">Monto:</label>
+                  <label className="mb-2" htmlFor="monto">Monto:</label>
                   <input
                     type="number"
                     className="form-control mb-2"
@@ -100,18 +98,7 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
                   />
                 </div>
                 <div className="form-group m-2">
-                  <label className="mb-2 " htmlFor="color">Color:</label>
-                  <input
-                    
-                    type="color"
-                    className="form-control mb-2"
-                    id="color"
-                    value={color}
-                    onChange={(e) => setColor(e.target.value)}
-                  />
-                </div>
-                <div className="form-group m-2">
-                  <label className="mb-2 "  htmlFor="tipoGasto">Tipo de Gasto:</label>
+                  <label className="mb-2" htmlFor="tipoGasto">Tipo de Gasto:</label>
                   <select
                     id="tipo_de_gasto"
                     name="tipo_de_gasto"

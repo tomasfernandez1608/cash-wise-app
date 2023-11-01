@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const ModalCrearCategoria  = ({ showModalCrearCategoria , cerrarModal}) => {
-  const [descripcion, setdescripcion] = useState("");
+const ModalCrearCategoria = ({ showModalCrearCategoria, cerrarModal }) => {
+  const [descripcion, setDescripcion] = useState("");
   const [color, setColor] = useState('');
-
 
   const handleEditar = async () => {
     const data = {
       descripcion: descripcion,
       color: color,
     };
-    console.log(data);
+
     try {
       const response = await fetch("http://localhost/serverWiseApp/registrarTipoGasto.php", {
         method: "POST",
@@ -36,32 +35,32 @@ const ModalCrearCategoria  = ({ showModalCrearCategoria , cerrarModal}) => {
       console.error("Error en la solicitud al servidor:", error);
     }
   };
-  
+
   return (
     <div>
-      {showModalCrearCategoria  && (
+      {showModalCrearCategoria && (
         <div className="modal" tabIndex="-1" role="dialog" style={{ display: "block" }}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Crear Categoria</h5>
+                <h5 className="modal-title">Crear categoría</h5>
                 <button type="button" className="btn-close" onClick={cerrarModal}></button>
               </div>
               <div className="modal-body">
                 <div className="form-group m-2">
-                  <label className="mb-2 "   htmlFor="descripcion">Descripcion:</label>
+                  <label className="mb-2 " htmlFor="descripcion">Descripción:</label>
                   <input
                     type="text"
                     className="form-control mb-2"
                     id="descripcion"
                     value={descripcion}
-                    onChange={(e) => setdescripcion(e.target.value)}
+                    onChange={(e) => setDescripcion(e.target.value)}
                   />
                 </div>
                 <div className="form-group m-2">
                   <label className="mb-2 " htmlFor="color">Color:</label>
                   <input
-                    
+
                     type="color"
                     className="form-control mb-2"
                     id="color"
@@ -81,7 +80,7 @@ const ModalCrearCategoria  = ({ showModalCrearCategoria , cerrarModal}) => {
         </div>
       )}
 
-      {showModalCrearCategoria  && <div className="modal-backdrop show"></div>}
+      {showModalCrearCategoria && <div className="modal-backdrop show"></div>}
     </div>
   );
 };
@@ -91,4 +90,4 @@ ModalCrearCategoria.propTypes = {
   cerrarModal: PropTypes.any.isRequired,
 };
 
-export default ModalCrearCategoria ;
+export default ModalCrearCategoria;

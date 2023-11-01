@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Login } from "../components/Login";
 import { obtenerOperaciones } from "../services/obtenerOperaciones";
-import Footer from "../components/Footer";
 import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
 import TablaUsuarios from "../components/TablaUsuarios";
@@ -59,7 +58,7 @@ const Home = () => {
                 }
               </div>
             </div>
-            <div className="col-xl-7">
+            <div className="col-xl-6">
               {
                 sessionId ? (
                   usuario.admin ? (
@@ -105,7 +104,6 @@ const Home = () => {
           )
         }
       </main>
-      <Footer />
     </div>
   );
 };

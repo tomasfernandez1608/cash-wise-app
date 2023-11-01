@@ -37,10 +37,9 @@ const TablaUsuarios = () => {
 
   return (
     <div>
-      <div className="card mb-4 mt-5 ">
+      <div className="card m-5">
         <div className="card-header">
-          <i className="fas fa-table me-1"></i>
-          Usuarios registrados.
+          <h1 className="text-start"><i className="fas fa-table me-1"></i> Usuarios registrados</h1>
         </div>
         {loading ? <Loading /> : (
           <div className="card-body">
@@ -52,7 +51,6 @@ const TablaUsuarios = () => {
                   <th className="align-middle">Apellido</th>
                   <th className="align-middle">Correo</th>
                   <th className="align-middle">Fecha alta</th>
-
                 </tr>
               </thead>
               <tbody>

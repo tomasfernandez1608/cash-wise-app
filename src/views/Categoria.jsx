@@ -1,12 +1,10 @@
+import CategoriasAdmin from '../components/CategoriasAdmin';
 
-import CategoriasAdmin from '../components/CategoriasAdmin'
 const Categoria = () => {
   return (
-    <div id="layoutSidenav_content">
-      <main>
-        <CategoriasAdmin/>
-      </main>
-    </div>
+    <main>
+      <CategoriasAdmin />
+    </main>
   );
 };
 export default Categoria;

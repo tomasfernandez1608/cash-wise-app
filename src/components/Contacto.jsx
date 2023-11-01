@@ -39,9 +39,7 @@ const Contacto = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })
-
-      .then((response) => response.json())
+    }).then((response) => response.json())
       .then((data) => {
         console.log(data);
         setTimeout(() => {
@@ -51,6 +49,8 @@ const Contacto = () => {
       .catch((error) => {
         console.error(error);
       });
+
+    showToast();
   };
 
   return (
@@ -67,9 +67,9 @@ const Contacto = () => {
                   alt="..."
                 ></img>
               </div>
-              <div className="col-md-8  ">
-                <div className="card-body ">
-                  <h5 className="card-title fw-bold  font-monospace ">Contacto</h5>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h1 className="card-title">Contacto</h1>
                   <div className="card-text">
                     <ul className="list-group list-group-flush">
                       <li className="list-group-item"></li>
@@ -185,7 +185,6 @@ const Contacto = () => {
               <button
                 type="submit"
                 className="btn btn-outline-dark align-items-end"
-                onClick={showToast}
               >
                 Enviar
               </button>

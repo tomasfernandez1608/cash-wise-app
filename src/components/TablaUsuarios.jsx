@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { obtenerUsuarios } from "../services/obtenerUsuarios";
+import Loading from './Loading/Loading';
 
 const TablaUsuarios = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [usuarios, setUsuarios] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function cargarUsuarios() {
       try {
@@ -12,8 +14,11 @@ const TablaUsuarios = () => {
         setUsuarios(usuarios);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
+
     cargarUsuarios();
   }, []);
 
@@ -37,47 +42,48 @@ const TablaUsuarios = () => {
           <i className="fas fa-table me-1"></i>
           Usuarios registrados.
         </div>
-        <div className="card-body">
-          <table id="datatablesSimple" className="table">
-            <thead>
-              <tr>
-                <th className="align-middle">Id</th>
-                <th className="align-middle">Nombre</th>
-                <th className="align-middle">Apellido</th>
-                <th className="align-middle">Correo</th>
-                <th className="align-middle">Fecha alta</th>
+        {loading ? <Loading /> : (
+          <div className="card-body">
+            <table id="datatablesSimple" className="table">
+              <thead>
+                <tr>
+                  <th className="align-middle">Id</th>
+                  <th className="align-middle">Nombre</th>
+                  <th className="align-middle">Apellido</th>
+                  <th className="align-middle">Correo</th>
+                  <th className="align-middle">Fecha alta</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              {currentItems.map((user) => (
-                <tr key={user.idusuario}>
-                  <td className="align-middle">{user.idusuario}</td>
-                  <td className="align-middle">{user.nombre}</td>
-                  <td className="align-middle">{user.apellido}</td>
-                  <td className="align-middle">{user.correo}</td>
-                  <td className="align-middle">{user.fecharegistro}</td>
                 </tr>
-              ))}
-            </tbody>
+              </thead>
+              <tbody>
+                {currentItems.map((user) => (
+                  <tr key={user.idusuario}>
+                    <td className="align-middle">{user.idusuario}</td>
+                    <td className="align-middle">{user.nombre}</td>
+                    <td className="align-middle">{user.apellido}</td>
+                    <td className="align-middle">{user.correo}</td>
+                    <td className="align-middle">{user.fecharegistro}</td>
+                  </tr>
+                ))}
+              </tbody>
 
-          </table>
-          <nav>
-            <ul className="pagination justify-content-center">
-              {pageNumbers.map((number) => (
-                <li key={number} className="page-item">
-                  <a
-                    onClick={() => paginate(number)}
-                    // href="!#"
-                    className="page-link"
-                  >
-                    {number}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
+            </table>
+            <nav>
+              <ul className="pagination justify-content-center">
+                {pageNumbers.map((number) => (
+                  <li key={number} className="page-item">
+                    <a
+                      onClick={() => paginate(number)}
+                      className="page-link"
+                    >
+                      {number}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        )}
       </div>
     </div>
   );

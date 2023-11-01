@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const FormGasto = () => {
   const [monto, setMonto] = useState("");
-  const [tipoGastoId, setTipoGastoId] = useState(""); 
+  const [tipoGastoId, setTipoGastoId] = useState("");
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
 
   useEffect(() => {
@@ -66,6 +66,8 @@ const FormGasto = () => {
     } catch (error) {
       console.error(error);
     }
+
+    showToast();
   };
 
   return (
@@ -134,8 +136,8 @@ const FormGasto = () => {
                       ))}
                     </select>
                     <div className="d-flex justify-content-end">
-                      <button type="submit" className="btn btn-primary mt-3" onClick={showToast}>
-                        Submit
+                      <button type="submit" className="btn btn-primary mt-3">
+                        Ingresar gasto
                       </button>
                       <ToastContainer
                         position="top-right"

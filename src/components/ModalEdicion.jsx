@@ -1,11 +1,25 @@
 import { useEffect, useState } from "react";
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
   const [monto, setMonto] = useState(0);
   const [tipoGastoId, setTipoGastoId] = useState("");
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
+
+  const showToast = () => {
+    toast.info('Operacion editada', {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   useEffect(() => {
     if (operacionAEditar) {
@@ -24,6 +38,7 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
 
     cargarTipoDeGasto();
   }, [operacionAEditar]);
+
   const handleEditar = async () => {
     const data = {
       id_operacion: operacionAEditar.id_operacion,
@@ -44,7 +59,9 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
         const data = await response.json();
         if (data.mensaje == "true") {
           cerrarModal();
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 1300);
         } else {
           console.error("Error al editar la operación.");
         }
@@ -54,6 +71,8 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
     } catch (error) {
       console.error("Error en la solicitud al servidor:", error);
     }
+
+    showToast();
   };
   return (
     <div>
@@ -104,6 +123,18 @@ const Modal = ({ showModal, cerrarModal, operacionAEditar }) => {
                   Cerrar
                 </button>
                 <button className="btn btn-primary" onClick={handleEditar}>Guardar cambios</button>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={3000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
               </div>
             </div>
           </div>

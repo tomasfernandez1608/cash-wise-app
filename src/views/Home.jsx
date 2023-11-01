@@ -4,6 +4,7 @@ import { obtenerOperaciones } from "../services/obtenerOperaciones";
 import Footer from "../components/Footer";
 import Piechart from "../components/Piechart";
 import CoinRanking from "../components/CoinRanking";
+import TablaUsuarios from "../components/TablaUsuarios";
 import FormGasto from "../components/FormGasto";
 
 const Home = () => {
@@ -45,12 +46,12 @@ const Home = () => {
           <h1 className="mt-4 mb-2">Cashwise App</h1>
           <hr />
           <div className="row mb-3 d-flex justify-content-center g-4 ">
-            <div className="col-xl-5">
+            <div className={usuario.admin ? "col-xl-12" : "col-xl-5"}>
               <div className="text-center">
                 {
                   sessionId ? (
                     usuario.admin ? (
-                      <h3>Sos admin</h3>
+                      <TablaUsuarios />
                     ) : (
                       <FormGasto />
                     )
@@ -64,14 +65,16 @@ const Home = () => {
               {
                 sessionId ? (
                   usuario.admin ? (
-                    <h3>Sos admin</h3>
+                    <>
+                      {/* <TablaUsuarios/> */}
+                    </>
                   ) : (
                     <div className="card">
                       <div className="card-header">
                         <h5 className="card-title d-flex justify-content-center">Balance de gastos</h5>
                       </div>
                       <div className="card-body d-flex justify-content-center " style={{ height: "500px" }}>
-                        <Piechart operaciones={operaciones} />
+                        {operaciones.length == 0 ? <h3>No tiene gastos ingresados.</h3> : <Piechart operaciones={operaciones} />}
                       </div>
                     </div>
                   )
@@ -92,14 +95,20 @@ const Home = () => {
                       estabilidad financiera y asegurarte de que tu dinero trabaje para
                       vos.
                     </div>
-                    
                   </div>
                 )
               }
             </div>
           </div>
         </div>
-        <CoinRanking />
+        {
+          !usuario.admin ? (
+            <CoinRanking />
+          ) : (
+            <>
+            </>
+          )
+        }
       </main>
       <Footer />
     </div>

@@ -15,18 +15,15 @@ const NavBar = () => {
 
     const cerrarSesion = () => {
         localStorage.clear();
-        window.location.reload();
+        window.location.href = '/';
     }
 
     sidebarToggle ? document.body.classList.add('sb-sidenav-toggled') : document.body.classList.remove('sb-sidenav-toggled');
 
     return (
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            {/* <!-- Navbar Brand--> */}
             <Link className="navbar-brand ps-3 text-white" to="/">Cashwise</Link>
-            {/* <!-- Sidebar Toggle--> */}
             <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!" onClick={handleBtn}><i className="fas fa-bars"></i></button>
-            {/* <!-- Navbar--> */}
             <div className="ms-auto"></div>
             {sessionId ? <div className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <button className="btn btn-info ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</button>

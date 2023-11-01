@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from "./Footer";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +20,22 @@ const Register = () => {
     });
   };
 
+  const showToast = () => {
+    toast.success('Usuario registrado exitosamente!', {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Realizar la solicitud POST con fetch
+
     fetch('http://localhost/serverWiseApp/registrarUsuario.php', {
       method: 'POST',
       body: JSON.stringify(formData),
@@ -32,11 +45,12 @@ const Register = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
         console.log(data);
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1200);
       })
       .catch((error) => {
-        // Manejar errores
         console.error(error);
       });
   };
@@ -142,9 +156,22 @@ const Register = () => {
                           <div className="d-grid">
                             <button
                               className="btn btn-secondary btn-block"
+                              onClick={showToast}
                             >
                               Crear cuenta
                             </button>
+                            <ToastContainer
+                              position="top-right"
+                              autoClose={3000}
+                              hideProgressBar={false}
+                              newestOnTop={false}
+                              closeOnClick
+                              rtl={false}
+                              pauseOnFocusLoss
+                              draggable
+                              pauseOnHover
+                              theme="light"
+                            />
                           </div>
                         </div>
                       </form>

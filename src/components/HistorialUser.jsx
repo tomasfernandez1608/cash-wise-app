@@ -65,10 +65,7 @@ const HistorialUser = () => {
 
   return (
     <div className="card m-5">
-      <div className="card-header">
-        <i className="fas fa-tags me-1"></i>
-        Historial de gastos
-      </div>
+      
       <div className="card-body">
         <form id="reporteForm" method="post">
           <div className="row d-flex justify-content-center">

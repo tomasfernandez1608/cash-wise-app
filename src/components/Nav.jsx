@@ -32,6 +32,17 @@ const Nav = () => {
                                 </Link>
                             </>
                         ) : null}
+                        {sessionId && usuario.admin ? (
+                            <>
+                                <div className="sb-sidenav-menu-heading text-white">Servicios</div>
+                                <Link className="nav-link " to="/Categoria">
+                                    <div className="sb-nav-link-icon">
+                                        <i className="fas fa-table"></i>
+                                    </div>
+                                    Categorias
+                                </Link>
+                            </>
+                        ) : null}
 
                         {!sessionId ? (
                             <Link className="nav-link text-white" to="/registro">

@@ -5,6 +5,7 @@ import CoinRanking from "../components/CoinRanking";
 import TablaUsuarios from "../components/TablaUsuarios";
 import FormGasto from "../components/FormGasto";
 import Descripcion from "../components/Descripcion";
+import { ChatIa } from "../components/ChatIa";
 
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
@@ -86,6 +87,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <ChatIa/>
         {!usuario.admin ? <CoinRanking /> : null}
       </main>
     </div>

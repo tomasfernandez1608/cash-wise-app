@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { obtenerChatRespuesta } from '../services/ObtenerRespuesta';
 
 export const ChatIa = () => {
-    const apiKey = 'sk-';
+  const [respuesta, setRespuesta] = useState('');
 
-    console.log(obtenerChatRespuesta());
-    
+  const pregunta = 'Hola como estas?'
+
+  const obtenerRespuesta = async () => {
+    try {
+      const respuesta = await obtenerChatRespuesta(pregunta);
+      setRespuesta(respuesta);
+    } catch (error) {
+      console.error('Error al obtener respuesta: ', error);
+    }
+  };
+
   return (
     <>
-        {/* <h2>Hola</h2> */}
+      <h4>Hola</h4>
+      <button onClick={obtenerRespuesta}>Obtener Respuesta</button>
+      {respuesta && <p>Respuesta: {respuesta}</p>}
     </>
-  )
-}
+  );
+};

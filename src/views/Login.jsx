@@ -17,6 +17,13 @@ const Login = () => {
 
         return usuarioLogueado || null;
     }
+    function verificarEstado(correoIngresado, contrasenaIngresada) {
+        const usuarioLogueado = usuarios.find((usuario) => {
+            return usuario.correo === correoIngresado && usuario.clave === MD5(contrasenaIngresada).toString() && usuario.estado==='1';
+        });
+
+        return usuarioLogueado || null;
+    }
 
     const ejecutarFuncionPHP = async () => {
         try {
@@ -32,6 +39,7 @@ const Login = () => {
                 localStorage.setItem("sessionId", JSON.stringify(data));
                 const usuarioEntero = await obtenerUsuario(usuario)
                 localStorage.setItem("user", JSON.stringify(usuarioEntero));
+                localStorage.setItem("estado", usuarioEntero.estado);
                 window.location.href = '/';
             } else {
                 console.log('Error al ejecutar la función PHP');
@@ -60,7 +68,12 @@ const Login = () => {
         const usuarioLogueado = verificarInicioSesion(usuario, contrasena);
 
         if (usuarioLogueado) {
-            ejecutarFuncionPHP();
+            if(verificarEstado(usuario,contrasena)){
+                ejecutarFuncionPHP();
+            }
+            else{
+                setRespuesta('Su usuario se encuentra bloqueado, entre en contacto para mas informacion');
+            }
         } else {
             setRespuesta('Inicio de sesión fallido. Correo o contraseña incorrectos.');
         }

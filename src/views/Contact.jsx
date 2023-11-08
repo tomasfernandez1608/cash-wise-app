@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "emailjs-com";
 import { ToastContainer, toast } from 'react-toastify';
 
 const Contacto = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -33,6 +35,23 @@ const Contacto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    emailjs.sendForm(
+      "service_a1rez4z",
+      "template_ij2x9mh",
+      form.current,
+      "NlnaJRXKBiPjReTVN"
+    )
+
+    setTimeout(() => {
+      e.target.reset(),
+        setFormData({
+          nombre: "",
+          apellido: "",
+          correo: "",
+          mensaje: "",
+        })
+    }, 1000);
+
     fetch("http://localhost/serverWiseApp/registrarContacto.php", {
       method: "POST",
       body: JSON.stringify(formData),
@@ -42,9 +61,6 @@ const Contacto = () => {
     }).then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 1300);
       })
       .catch((error) => {
         console.error(error);
@@ -105,7 +121,7 @@ const Contacto = () => {
                         className=" m-lg-4 "
                         href="https://maps.app.goo.gl/yziqL2rw4GAjTfJM9"
                       >
-                        París 532, Buenos Aires{" "}
+                        París 532, Buenos Aires
                       </a>
                     </li>
                   </ul>
@@ -117,7 +133,7 @@ const Contacto = () => {
       </div>
       <div className="row p-5 border border-5">
         <h3>Formulario de contacto</h3>
-        <form onSubmit={handleSubmit}>
+        <form ref={form} onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-6">
               <div className="mb-3">

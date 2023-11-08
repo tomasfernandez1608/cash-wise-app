@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { obtenerChatRespuesta } from '../services/ObtenerRespuesta';
 
 export const ChatIa = () => {
@@ -18,7 +18,6 @@ export const ChatIa = () => {
 
   return (
     <>
-      <h4>Hola</h4>
       <button onClick={obtenerRespuesta}>Obtener Respuesta</button>
       {respuesta && <p>Respuesta: {respuesta}</p>}
     </>

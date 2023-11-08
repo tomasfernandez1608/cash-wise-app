@@ -6,6 +6,7 @@ import TablaUsuarios from "../components/TablaUsuarios";
 import FormGasto from "../components/FormGasto";
 import Descripcion from "../components/Descripcion";
 import { ChatIa } from "../components/ChatIa";
+import { useMouse } from "../hooks/useMouse";
 
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
@@ -99,6 +100,9 @@ const Home = () => {
   //    };
   //  }, [usuarioRollViewMouse, cursorImages]);
 
+  useMouse();
+
+
   return (
     <div>
       <main className="m-5">
@@ -146,7 +150,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <ChatIa/>
+        <ChatIa />
         {!usuario.admin ? <CoinRanking /> : null}
       </main>
     </div>

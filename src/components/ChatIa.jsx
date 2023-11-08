@@ -10,6 +10,7 @@ export const ChatIa = () => {
     try {
       const respuesta = await obtenerChatRespuesta(pregunta);
       setRespuesta(respuesta);
+      console.log(respuesta);
     } catch (error) {
       console.error('Error al obtener respuesta: ', error);
     }

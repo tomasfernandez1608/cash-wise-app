@@ -106,17 +106,19 @@ const ModalEditarPerfil = ({ showModal, cerrarModal, usuario, cliente }) => {
                                         name="apellido"
                                     />
                                 </div>
-                                <div className="form-group m-2">
-                                    <label className="mb-2" htmlFor="sueldo">Sueldo:</label>
-                                    <input
-                                        type="text"
-                                        className="form-control mb-2"
-                                        id="sueldo"
-                                        value={formData.sueldo}
-                                        onChange={handleChange}
-                                        name="sueldo"
-                                    />
-                                </div>
+
+                                {!usuario.admin ?
+                                    <div className="form-group m-2">
+                                        <label className="mb-2" htmlFor="sueldo">Sueldo:</label>
+                                        <input
+                                            type="text"
+                                            className="form-control mb-2"
+                                            id="sueldo"
+                                            value={formData.sueldo}
+                                            onChange={handleChange}
+                                            name="sueldo"
+                                        />
+                                    </div> : null}
                             </form>
                             <div className="modal-footer">
                                 <button className="btn btn-secondary" onClick={cerrarModal}>

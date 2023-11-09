@@ -9,10 +9,10 @@ const TablaUsuarios = () => {
 
   const bloquearUsuario = async (idusuario) => {
     const data = {
-      idusuario:idusuario,
-      estado:'0'
+      idusuario: idusuario,
+      estado: '0'
     };
-    console.log(data);
+
     try {
       const response = await fetch(
         "http://localhost/serverWiseApp/setEstado.php",
@@ -24,7 +24,7 @@ const TablaUsuarios = () => {
           body: JSON.stringify(data),
         }
       );
-      console.log(response);
+
       if (response.ok) {
         const data = await response.json();
         if (data.mensaje == "true") {
@@ -44,10 +44,10 @@ const TablaUsuarios = () => {
 
   const habilitarUsuario = async (idusuario) => {
     const data = {
-      idusuario:idusuario,
-      estado:'1'
+      idusuario: idusuario,
+      estado: '1'
     };
-    console.log(data);
+
     try {
       const response = await fetch(
         "http://localhost/serverWiseApp/setEstado.php",
@@ -82,7 +82,6 @@ const TablaUsuarios = () => {
       try {
         const usuarios = await obtenerUsuarios();
         setUsuarios(usuarios);
-        console.log(usuarios);
       } catch (error) {
         console.log(error);
       } finally {

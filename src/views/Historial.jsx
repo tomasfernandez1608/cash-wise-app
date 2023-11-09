@@ -19,6 +19,7 @@ const HistorialUser = () => {
   const cerrarModal = () => {
     setShowModal(false);
   };
+
   const buscar = async () => {
     try {
       const response = await fetch(
@@ -119,7 +120,7 @@ const HistorialUser = () => {
     <div className="card m-5">
       <div className="card-header">
         <h1>
-          <i className="fas fa-tags me-1"></i> Historial de gastos{" "}
+          <i className="fas fa-tags me-1"></i> Historial de gastos
         </h1>
       </div>
       <div className="card-body">

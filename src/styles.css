@@ -11253,3 +11253,7 @@ body {
 .red-text {
   color: red;
 }
+
+.userImage {
+  width: 300px;
+}

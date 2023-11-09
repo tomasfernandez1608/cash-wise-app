@@ -32,7 +32,7 @@ const NavBar = () => {
                             sessionId
                                 ? <>
                                     <li>
-                                        <button className="btn btn-secondary ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</button>
+                                        <Link to='/perfil' className="btn btn-secondary ms-auto ms-md-0 me-3 me-lg-3">Ver perfil</Link>
                                     </li>
                                     <li>
                                         <button className="btn btn-danger" onClick={cerrarSesion}>Cerrar sesión</button>

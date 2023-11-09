@@ -83,11 +83,11 @@ const Ingresos = () => {
     <main className="container mt-5">
       <div className="card m-5">
         <div className="card-header d-flex align-items-center  ">
-            <img
+          <img
             src="https://firebasestorage.googleapis.com/v0/b/eco-gm.appspot.com/o/Fotos_Producto%2Fbolsa-de-dinero.png?alt=media&token=b468bd7b-66e8-41dd-8830-498a4479a9e8"
-              alt=""
-              style={{width:100}}
-            />
+            alt=""
+            style={{ width: 100 }}
+          />
           <h1 className="mx-5">
             Ingresos
           </h1>
@@ -124,13 +124,13 @@ const Ingresos = () => {
               </thead>
               <tbody>
                 {ingresos.map((ingreso, index) => (
-                  
+
                   <tr key={index}>
                     <th scope="row">{ingreso.fecha}</th>
                     <td>{ingreso.fuente}</td>
                     <td>{ingreso.descripcion}</td>
                     <td>{ingreso.monto}</td>
-                    
+
                     <td>
                       <div className="d-flex justify-content-center">
                         <button

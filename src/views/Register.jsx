@@ -11,6 +11,10 @@ const Register = () => {
     sueldomensual: '',
   });
 
+  if (localStorage.getItem("sessionId")) {
+    window.location.href = '/';
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({

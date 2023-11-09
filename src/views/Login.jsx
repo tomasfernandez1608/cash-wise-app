@@ -10,6 +10,10 @@ const Login = () => {
     const [usuarios, setUsuarios] = useState([]);
     const [respuesta, setRespuesta] = useState('');
 
+    if (localStorage.getItem("sessionId")) {
+        window.location.href = '/';
+    }
+
     function verificarInicioSesion(correoIngresado, contrasenaIngresada) {
         const usuarioLogueado = usuarios.find((usuario) => {
             return usuario.correo === correoIngresado && usuario.clave === MD5(contrasenaIngresada).toString();
@@ -19,7 +23,7 @@ const Login = () => {
     }
     function verificarEstado(correoIngresado, contrasenaIngresada) {
         const usuarioLogueado = usuarios.find((usuario) => {
-            return usuario.correo === correoIngresado && usuario.clave === MD5(contrasenaIngresada).toString() && usuario.estado==='1';
+            return usuario.correo === correoIngresado && usuario.clave === MD5(contrasenaIngresada).toString() && usuario.estado === '1';
         });
 
         return usuarioLogueado || null;
@@ -68,10 +72,10 @@ const Login = () => {
         const usuarioLogueado = verificarInicioSesion(usuario, contrasena);
 
         if (usuarioLogueado) {
-            if(verificarEstado(usuario,contrasena)){
+            if (verificarEstado(usuario, contrasena)) {
                 ejecutarFuncionPHP();
             }
-            else{
+            else {
                 setRespuesta('Su usuario se encuentra bloqueado, entre en contacto para mas informacion');
             }
         } else {
@@ -79,7 +83,7 @@ const Login = () => {
         }
     };
 
-    
+
     return (
         <main className="container mt-5">
             <div className="row justify-content-center">

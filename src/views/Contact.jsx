@@ -131,7 +131,7 @@ const Contacto = () => {
           </div>
         </div>
       </div>
-      <div className="row p-5 border border-5">
+      <div className="row p-5 border border-5 bg-white">
         <h3>Formulario de contacto</h3>
         <form ref={form} onSubmit={handleSubmit}>
           <div className="row">

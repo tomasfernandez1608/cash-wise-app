@@ -10,7 +10,13 @@ const Ingresos = () => {
     const [showModal, setShowModal] = useState(false);
     const [showModalCrearIngreso, setShowModalCrearIngreso] = useState(false);
     const [loading, setLoading] = useState(true);
+
+    if (!localStorage.getItem("sessionId")) {
+        window.location.href = '/';
+    }
+
     const idusuario = JSON.parse(localStorage.getItem("user")).idusuario;
+
     const crearIngreso = async () => {
         setShowModalCrearIngreso(true);
     };

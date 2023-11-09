@@ -9,6 +9,11 @@ const HistorialUser = () => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState("");
+
+  if (!localStorage.getItem("sessionId")) {
+    window.location.href = '/';
+  }
+
   const idusuario = JSON.parse(localStorage.getItem("user")).idusuario;
 
   const editarOperacion = async (operacion) => {

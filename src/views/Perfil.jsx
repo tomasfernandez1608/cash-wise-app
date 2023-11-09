@@ -10,6 +10,10 @@ const Perfil = () => {
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    if (!localStorage.getItem("sessionId")) {
+        window.location.href = '/';
+    }
+
     const editarPerfil = async () => {
         setShowModal(!showModal);
     };
@@ -44,7 +48,7 @@ const Perfil = () => {
 
     return (
         <main className="container mt-5">
-            <div className="p-5 border border-5">
+            <div className="p-5 border border-5 bg-white">
                 <h1>Perfil de usuario</h1>
                 <hr />
                 {loading ? <Loading /> : (

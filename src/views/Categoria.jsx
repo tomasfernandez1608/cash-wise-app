@@ -10,6 +10,10 @@ const CategoriaAdmin = () => {
   const [showModalCrearCategoria, setShowModalCrearCategoria] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  if (!localStorage.getItem("sessionId") || !JSON.parse(localStorage.getItem("user")).admin) {
+    window.location.href = '/';
+  }
+
   const crearGasto = async () => {
     setShowModalCrearCategoria(true);
   };

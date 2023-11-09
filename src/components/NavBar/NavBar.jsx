@@ -11,7 +11,6 @@ const NavBar = () => {
         setUsuario(JSON.parse(localStorage.getItem("user")))
     }, [sessionId]);
 
-
     const cerrarSesion = () => {
         localStorage.clear();
         window.location.href = '/';

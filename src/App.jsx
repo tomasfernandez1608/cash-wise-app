@@ -7,7 +7,7 @@ import Contact from './views/Contact';
 import Register from './views/Register';
 import Historial from './views/Historial';
 import Categoria from './views/Categoria';
-// import Ingresos from './views/Ingresos';
+import Ingresos from './views/Ingresos';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer';
 import { Password } from './components/Password';
@@ -48,11 +48,11 @@ const App = () => {
           exact
           element={<Register />}
         />
-        {/* <Route
+        <Route
           path="/ingresos"
           exact
           element={<Ingresos />}
-        /> */}
+        />
         <Route
           path="/contacto"
           exact

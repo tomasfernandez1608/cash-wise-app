@@ -6,6 +6,7 @@ import Contact from './views/Contact';
 import Register from './views/Register';
 import Historial from './views/Historial';
 import Categoria from './views/Categoria';
+import Ingreso from './views/Ingreso'
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer';
 import { Password } from './components/Password';
@@ -40,6 +41,11 @@ const App = () => {
           path="/registro"
           exact
           element={<Register />}
+        />
+        <Route
+          path="/ingreso"
+          exact
+          element={<Ingreso />}
         />
         <Route
           path="/contacto"

@@ -6,7 +6,7 @@ import Contact from './views/Contact';
 import Register from './views/Register';
 import Historial from './views/Historial';
 import Categoria from './views/Categoria';
-import Ingreso from './views/Ingreso'
+import Ingresos from './views/Ingresos'
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer';
 import { Password } from './components/Password';
@@ -44,9 +44,9 @@ const App = () => {
           element={<Register />}
         />
         <Route
-          path="/ingreso"
+          path="/ingresos"
           exact
-          element={<Ingreso />}
+          element={<Ingresos />}
         />
         <Route
           path="/contacto"

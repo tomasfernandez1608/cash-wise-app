@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 
-const ModalIngresos = ({ showModalIngresos, cerrarModal, IngresoAEditar }) => {
+const ModalIngresos = ({ showModalIngresos, cerrarModal, ingresoAEditar }) => {
   const [descripcion, setDescripcion] = useState('');
   const [monto, setMonto] = useState('');
 
-  
   const handleEditar = async () => {
     const data = {
       descripcion: descripcion,
@@ -36,13 +35,12 @@ const ModalIngresos = ({ showModalIngresos, cerrarModal, IngresoAEditar }) => {
       console.error("Error en la solicitud al servidor:", error);
     }
   };
-  useEffect(()=>
-    {
-        if(IngresoAEditar){
-            setDescripcion(IngresoAEditar.descripcion || '');
-            setMonto(IngresoAEditar.monto || '');
-        }
-    }, [IngresoAEditar])
+  useEffect(() => {
+    if (ingresoAEditar) {
+      setDescripcion(ingresoAEditar.descripcion || '');
+      setMonto(ingresoAEditar.monto || '');
+    }
+  }, [ingresoAEditar])
   return (
     <div>
       {showModalIngresos && (
@@ -95,6 +93,7 @@ const ModalIngresos = ({ showModalIngresos, cerrarModal, IngresoAEditar }) => {
 ModalIngresos.propTypes = {
   showModalIngresos: PropTypes.any.isRequired,
   cerrarModal: PropTypes.any.isRequired,
+  ingresoAEditar: PropTypes.any.isRequired
 };
 
 export default ModalIngresos;

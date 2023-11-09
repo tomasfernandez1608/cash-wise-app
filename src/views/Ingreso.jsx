@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Loading from "../components/Loading/Loading";
 import ModalIngresos from "../components/ModalIngresos";
 
+
 const Ingreso = () => {
   const [Ingreso, setIngreso] = useState([]);
   const [IngresoAEditar, setIngresoAEditar] = useState({});

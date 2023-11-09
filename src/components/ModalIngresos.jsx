@@ -5,6 +5,7 @@ const ModalIngresos = ({ showModalIngresos, cerrarModal, IngresoAEditar }) => {
   const [descripcion, setDescripcion] = useState('');
   const [monto, setMonto] = useState('');
 
+  
   const handleEditar = async () => {
     const data = {
       descripcion: descripcion,

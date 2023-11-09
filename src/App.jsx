@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import { Password } from './components/Password';
 import './styles.css';
 
+
 const App = () => {
   return (
     <BrowserRouter>

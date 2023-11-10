@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ModalEdicion from "../components/ModalEdicion";
 import Loading from '../components/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
+import Barchart from "../components/Barchart";
 
 const HistorialUser = () => {
   const [operaciones, setOperaciones] = useState([]);
@@ -116,8 +117,8 @@ const HistorialUser = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
 
+  useEffect(() => {
     cargarOperaciones();
   }, [idusuario]);
 
@@ -230,6 +231,8 @@ const HistorialUser = () => {
               cerrarModal={cerrarModal}
               operacionAEditar={operacionAEditar}
             />
+
+            <Barchart />
           </>
         )}
       </div>

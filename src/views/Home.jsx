@@ -5,7 +5,6 @@ import CoinRanking from "../components/CoinRanking";
 import TablaUsuarios from "../components/TablaUsuarios";
 import FormGasto from "../components/FormGasto";
 import Descripcion from "../components/Descripcion";
-import { ChatIa } from "../components/ChatIa";
 // import { useMouse } from "../hooks/useMouse";
 
 const Home = () => {
@@ -91,7 +90,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <ChatIa />
         {!usuario.admin ? <CoinRanking /> : null}
       </main>
     </div>

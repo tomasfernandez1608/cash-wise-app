@@ -4,7 +4,7 @@ import { obtenerChatRespuesta } from '../services/ObtenerRespuesta';
 export const ChatIa = () => {
   const [respuesta, setRespuesta] = useState('');
 
-  const pregunta = 'Hola como estas?'
+  const pregunta = 'cuales son las mejores manera de ahorrar?';
 
   const obtenerRespuesta = async () => {
     try {

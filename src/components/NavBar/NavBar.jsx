@@ -51,14 +51,20 @@ const NavBar = () => {
                 <ul className='nav'>
                     <li><NavLink to="/">Inicio</NavLink></li>
                     {sessionId && !usuario.admin
-                        ? (<>
+                        ? (
+                        <>
                             <li><NavLink to='/historial'>Historial</NavLink></li>
                             <li><NavLink to='/ingresos'>Ingresos</NavLink></li>
+                            <li><NavLink to='/asesoramiento'>Asesoramiento</NavLink></li>
                         </>)
                         : null
                     }
                     {sessionId && usuario.admin
-                        ? <li><NavLink to='/categoria'>Categorías</NavLink></li>
+                        ? (
+                        <>
+                            <li><NavLink to='/categoria'>Categorías</NavLink></li>
+                        </>
+                        )
                         : null
                     }
                     <li><NavLink to="/nosotros">¿Quiénes somos?</NavLink></li>

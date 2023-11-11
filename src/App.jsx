@@ -12,6 +12,7 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer';
 import { Password } from './components/Password';
 import './styles.css';
+import Asesoramiento from './views/Asesoramiento';
 
 const App = () => {
   return (
@@ -67,6 +68,11 @@ const App = () => {
           path="/olvidoContrasena"
           exact
           element={<Password />}
+        />
+        <Route
+          path="/asesoramiento"
+          exact
+          element={<Asesoramiento />}
         />
       </Routes>
       <Footer />

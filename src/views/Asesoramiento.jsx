@@ -3,29 +3,41 @@ import { ToastContainer, toast } from "react-toastify";
 import { obtenerChatRespuesta } from "../services/ObtenerRespuesta";
 import { useMouse } from "../hooks/useMouse";
 
-
 const Asesoramiento = () => {
   const form = useRef();
-  const [pregunta, setPregunta] = useState('');
+  const [pregunta, setPregunta] = useState("");
+  const [errorPregunta, setErrorPregunta] = useState(""); //manejo de errores en form
 
   const handleChange = (e) => {
     setPregunta(e.target.value);
   };
 
-  const [respuesta, setRespuesta] = useState("Por favor solo realice preguntas relacionadas al ambito Economico y Financiero");
+  const [respuesta, setRespuesta] = useState(
+    "Por favor solo realice preguntas relacionadas al ambito Economico y Financiero"
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    showToast();
-    setRespuesta('Esperando Respuesta...')
 
-    try {
-      const respuesta = await obtenerChatRespuesta(pregunta);
-      setRespuesta(respuesta);
-      setPregunta("");
-      console.log(respuesta);
-    } catch (error) {
-      console.error("Error al obtener respuesta: ", error);
+    if (!pregunta.trim()) {
+      // Si el campo está vacío, muestra el error y detiene la función
+      setErrorPregunta(
+        "Este campo debe de completarse para enviar el formulario"
+      );
+    } else {
+      // Si no hay error, limpia el mensaje de error y procede con la lógica de envío
+      setErrorPregunta(""); // Limpia el mensaje de error
+      showToast();
+      setRespuesta("Esperando Respuesta...");
+
+      try {
+        const respuestaApi = await obtenerChatRespuesta(pregunta);
+        setRespuesta(respuestaApi);
+        setPregunta(""); // Limpia la pregunta después de obtener la respuesta
+        console.log(respuestaApi);
+      } catch (error) {
+        console.error("Error al obtener respuesta: ", error);
+      }
     }
   };
 
@@ -55,14 +67,16 @@ const Asesoramiento = () => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className={`form-control ${errorPregunta ? "is-invalid" : ""}`}
               id="pregunta"
               name="pregunta"
               placeholder="Realice su Consulta Aqui"
               value={pregunta}
               onChange={handleChange}
-              required
             />
+            {errorPregunta && (
+              <div className="invalid-feedback d-block">{errorPregunta}</div>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="respuesta" className="form-label">

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const Contacto = () => {
   const form = useRef();
@@ -10,6 +10,12 @@ const Contacto = () => {
     correo: "",
     mensaje: "",
   });
+  const [errores, setErrores] = useState({
+    nombre: "",
+    apellido: "",
+    correo: "",
+    mensaje: ""
+  }); //manejo de errores en form
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +26,7 @@ const Contacto = () => {
   };
 
   const showToast = () => {
-    toast.success('Enviado con exito!', {
+    toast.success("Enviado con exito!", {
       position: "top-right",
       autoClose: 1500,
       hideProgressBar: false,
@@ -35,38 +41,79 @@ const Contacto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
-      "service_a1rez4z",
-      "template_ij2x9mh",
-      form.current,
-      "NlnaJRXKBiPjReTVN"
-    )
+    let nuevosErrores = {}; // Objeto para almacenar los posibles errores
 
-    setTimeout(() => {
-      e.target.reset(),
-        setFormData({
-          nombre: "",
-          apellido: "",
-          correo: "",
-          mensaje: "",
+    // Validación para el nombre
+    if (!formData.nombre.trim()) {
+      nuevosErrores.nombre =
+        "El nombre es requerido";
+    }
+
+    // Validación para el apellido
+    if (!formData.apellido.trim()) {
+      nuevosErrores.apellido =
+        "El apellido es requerido";
+    }
+
+    // Validación para el correo
+    if (!formData.correo.trim()) {
+      nuevosErrores.correo =
+        "El mail es requerido y debe de ser valido";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.correo)
+    ) {
+      nuevosErrores.correo = "Por favor ingrese un correo electrónico válido";
+    }
+
+    // Validación para el mensaje
+    if (!formData.mensaje.trim()) {
+      nuevosErrores.mensaje =
+        "Debe de enviar un mensaje";
+    }
+
+    setErrores(nuevosErrores); // Actualiza el estado de errores con los nuevos errores
+
+    // Verifica si hay errores antes de proceder
+    if (Object.keys(nuevosErrores).length === 0) {
+      try {
+        emailjs.sendForm(
+          "service_a1rez4z",
+          "template_ij2x9mh",
+          form.current,
+          "NlnaJRXKBiPjReTVN"
+        );
+  
+        setTimeout(() => {
+          e.target.reset(),
+            setFormData({
+              nombre: "",
+              apellido: "",
+              correo: "",
+              mensaje: "",
+            });
+        }, 1000);
+  
+        fetch("http://localhost/serverWiseApp/registrarContacto.php", {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
-    }, 1000);
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+  
+        showToast();
+      } catch (error) {
+        console.error("Error al obtener respuesta: ", error);
+      }
+    }
 
-    fetch("http://localhost/serverWiseApp/registrarContacto.php", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    showToast();
   };
 
   return (
@@ -142,13 +189,19 @@ const Contacto = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${
+                    errores.nombre ? "is-invalid" : ""
+                  }`} //maneja el estilo del input segun error
                   id="nombre"
                   name="nombre"
                   value={formData.nombre}
                   onChange={handleChange}
-                  required
                 />
+                {errores.nombre && ( // mensaje de error si no pasa la validacion
+                  <div className="invalid-feedback d-block">
+                    {errores.nombre}
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-6">
@@ -158,13 +211,19 @@ const Contacto = () => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${
+                    errores.apellido ? "is-invalid" : ""
+                  }`}
                   id="apellido"
                   name="apellido"
                   value={formData.apellido}
                   onChange={handleChange}
-                  required
                 />
+                {errores.apellido && (
+                  <div className="invalid-feedback d-block">
+                    {errores.apellido}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -174,27 +233,39 @@ const Contacto = () => {
             </label>
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${
+                errores.correo ? "is-invalid" : ""
+              }`}
               id="correo"
               name="correo"
               value={formData.correo}
               onChange={handleChange}
-              required
             />
+            {errores.correo && (
+                  <div className="invalid-feedback d-block">
+                    {errores.correo}
+                  </div>
+                )}
           </div>
           <div className="mb-3">
             <label htmlFor="mensaje" className="form-label">
               Mensaje
             </label>
             <textarea
-              className="form-control"
+              className={`form-control ${
+                errores.mensaje ? "is-invalid" : ""
+              }`}
               id="mensaje"
               name="mensaje"
               value={formData.mensaje}
               onChange={handleChange}
               rows="4"
-              required
             />
+            {errores.mensaje && (
+                  <div className="invalid-feedback d-block">
+                    {errores.mensaje}
+                  </div>
+                )}
           </div>
           <div className="d-flex justify-content-end">
             <button

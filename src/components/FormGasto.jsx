@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const FormGasto = () => {
   const [monto, setMonto] = useState("");
   const [tipoGastoId, setTipoGastoId] = useState("");
   const [tipoDeGasto, setTipoDeGasto] = useState([]);
+  const [errores, setErrores] = useState({
+    monto: null,
+    tipoGastoId: '',
+  }); //manejo de errores en form
 
   useEffect(() => {
     async function cargarTipoDeGasto() {
@@ -21,7 +25,7 @@ const FormGasto = () => {
   }, []);
 
   const showToast = () => {
-    toast('Gasto ingresado exitosamente!', {
+    toast("Gasto ingresado exitosamente!", {
       position: "top-right",
       autoClose: 1500,
       hideProgressBar: false,
@@ -36,38 +40,57 @@ const FormGasto = () => {
   const handleSend = async (e) => {
     e.preventDefault();
 
-    const usuarioLocalStorage = JSON.parse(localStorage.getItem("user"));
-    const idusuario = usuarioLocalStorage.idusuario;
+    let nuevosErrores = {}; // Objeto para almacenar los posibles errores
 
-    const data = {
-      monto: parseFloat(monto),
-      tipo_gasto_id: parseInt(tipoGastoId),
-      idusuario,
-    };
-
-    try {
-      const response = await fetch("http://localhost/serverWiseApp/registrarGastos.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1300);
-      } else {
-        console.error("Error en la solicitud al servidor");
-      }
-    } catch (error) {
-      console.error(error);
+    // Validación para el nombre
+    if (!monto.trim()) {
+      nuevosErrores.monto = "El Monto es requerido";
     }
 
-    showToast();
+    // Validación para el tipo de gasto
+    if (!tipoGastoId) {
+      nuevosErrores.tipoGastoId = "Debe seleccionar un tipo de gasto";
+    }
+    setErrores(nuevosErrores); // Actualiza el estado de errores con los nuevos errores
+
+    if (Object.keys(nuevosErrores).length === 0) {
+      const usuarioLocalStorage = JSON.parse(localStorage.getItem("user"));
+      const idusuario = usuarioLocalStorage.idusuario;
+
+      const data = {
+        monto: parseFloat(monto),
+        tipo_gasto_id: parseInt(tipoGastoId),
+        idusuario,
+      };
+      console.log(data);
+
+      try {
+        const response = await fetch(
+          "http://localhost/serverWiseApp/registrarGastos.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1300);
+        } else {
+          console.error("Error en la solicitud al servidor");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      showToast();
+    }
   };
 
   return (
@@ -103,26 +126,33 @@ const FormGasto = () => {
                       <label className="form-label">Ingrese el monto</label>
                       <input
                         type="number"
-                        className="form-control"
+                        className={`form-control ${
+                          errores.monto ? "is-invalid" : ""
+                        }`} //maneja el estilo del input segun error
                         id="monto"
                         name="monto"
                         aria-describedby="monto"
                         min={1}
                         step="1"
                         max={9999999}
-                        required
                         value={monto}
                         onChange={(e) => setMonto(e.target.value)}
                         placeholder="$3000"
-                      ></input>
-                      <div id="montodesc" className="form-text">
-                        Este dato no es visible para otros usuarios
-                      </div>
+                      />
+                      {errores.monto ? ( // mensaje de error si no pasa la validacion
+                        <div className="invalid-feedback d-block">
+                          {errores.monto}
+                        </div>
+                      ) : (
+                        <div id="montodesc" className="form-text">
+                          Este dato no es visible para otros usuarios
+                        </div>
+                      )}
                     </div>
                     <select
                       id="tipo_de_gasto"
                       name="tipo_de_gasto"
-                      className="form-select"
+                      className={`form-select ${errores.tipoGastoId ? "is-invalid" : ""}`}
                       aria-label="Tipo De Gasto"
                       value={tipoGastoId}
                       onChange={(e) => setTipoGastoId(e.target.value)}
@@ -136,6 +166,7 @@ const FormGasto = () => {
                         </option>
                       ))}
                     </select>
+                    {errores.tipoGastoId && <div className="invalid-feedback d-block">{errores.tipoGastoId}</div>}
                     <div className="d-flex justify-content-end">
                       <button type="submit" className="btn btn-primary mt-3">
                         Ingresar gasto

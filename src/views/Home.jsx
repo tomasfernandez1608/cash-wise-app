@@ -5,13 +5,15 @@ import CoinRanking from "../components/CoinRanking";
 import TablaUsuarios from "../components/TablaUsuarios";
 import FormGasto from "../components/FormGasto";
 import Descripcion from "../components/Descripcion";
-// import { useMouse } from "../hooks/useMouse";
+import Loading from '../components/Loading/Loading';
 
 const Home = () => {
   const [operaciones, setOperaciones] = useState([]);
+  const [ingresos, setIngresos] = useState([]);
   const [forgotPassword, setForgotPassword] = useState(false);
   const [sessionId, setSessionId] = useState();
   const [usuario, setUsuario] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setSessionId(localStorage.getItem("sessionId"));
@@ -26,22 +28,52 @@ const Home = () => {
         setOperaciones(operaciones);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
+
+    const cargarIngreso = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost/serverWiseApp/obtenerIngresos.php",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ idusuario: JSON.parse(localStorage.getItem("user")).idusuario }),
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setIngresos(data.mensaje);
+        } else {
+          console.error("Error en la solicitud al servidor.");
+        }
+      } catch (error) {
+        console.error("Error en la solicitud al servidor:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     if (sessionId) {
       setUsuario(JSON.parse(localStorage.getItem("user")));
       cargarOperaciones();
+      cargarIngreso();
     }
   }, [sessionId]);
+
+  const totalMontos = ingresos.reduce((acumulador, objeto) => {
+    return acumulador + parseFloat(objeto.monto);
+  }, 0);
 
   useEffect(() => {
     if (!forgotPassword) {
       setForgotPassword(true);
     }
   }, [forgotPassword]);
-
-  // useMouse();
 
   return (
     <div>
@@ -54,7 +86,6 @@ const Home = () => {
                   usuario.admin ? (
                     <TablaUsuarios />
                   ) : (
-
                     <FormGasto />
                   )
                 ) : (
@@ -72,16 +103,19 @@ const Home = () => {
                     </h5>
                   </div>
                   <div
-                    className="card-body d-flex justify-content-center "
+                    className={loading ? "card-body" : "card-body d-flex justify-content-center"}
                     style={{ height: "600px" }}
                   >
-                    {operaciones.length == 0 ? (
-                      <h3>No tiene gastos ingresados.</h3>
-                    ) : (
-                      <Piechart
-                        operaciones={operaciones}
-                        idUsuario={usuario.idusuario}
-                      />
+                    {loading ? <Loading /> : (
+                      operaciones.length == 0 ? (
+                        <h3>No tiene gastos ingresados.</h3>
+                      ) : (
+                        <Piechart
+                          operaciones={operaciones}
+                          idUsuario={usuario.idusuario}
+                          ingresos={totalMontos}
+                        />
+                      )
                     )}
                   </div>
                 </div>

@@ -5,7 +5,6 @@ import ModalCrearIngreso from "../components/ModalCrearIngreso";
 
 const Ingresos = () => {
   const [ingresos, setIngresos] = useState([]);
-  const [montoacumulado, setMontoAcumulado] = useState(0);
   const [ingresoAEditar, setIngresoAEditar] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [showModalCrearIngreso, setShowModalCrearIngreso] = useState(false);
@@ -66,11 +65,9 @@ const Ingresos = () => {
             body: JSON.stringify({ idusuario: idusuario }),
           }
         );
-        //console.log(response);
         if (response.ok) {
           const data = await response.json();
           setIngresos(data.mensaje);
-          //console.log(ingresos);
         } else {
           console.error("Error en la solicitud al servidor.");
         }
@@ -132,7 +129,6 @@ const Ingresos = () => {
                     <td>{ingreso.fuente}</td>
                     <td>{ingreso.descripcion}</td>
                     <td>{ingreso.monto}</td>
-
                     <td>
                       <div className="d-flex justify-content-center">
                         <button

@@ -5,7 +5,7 @@ import { obtenerTipoDeGasto } from "../services/obtenerTipoDeGasto";
 import { obtenerCliente } from '../services/obtenerCliente';
 import Loading from './Loading/Loading';
 
-const Piechart = ({ operaciones, idUsuario }) => {
+const Piechart = ({ operaciones, idUsuario, ingresos }) => {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
     const [tipoDeGasto, setTipoDeGasto] = useState([]);
@@ -109,8 +109,8 @@ const Piechart = ({ operaciones, idUsuario }) => {
             ) : (
                 <>
                     <canvas ref={chartRef} style={{ width: '350px', height: '350px' }}></canvas>
-                    <p>Sueldo mensual: <strong>${parseInt(cliente.sueldomensual)}</strong></p>
-                    <p>Dinero restante: <strong>${parseInt(cliente.sueldomensual) - gastoActual}</strong></p>
+                    <p>Sueldo mensual: <strong>${parseInt(cliente.sueldomensual) + ingresos}</strong></p>
+                    <p>Dinero restante: <strong>${(parseInt(cliente.sueldomensual) + ingresos) - gastoActual}</strong></p>
                 </>
             )}
         </div>
@@ -119,7 +119,8 @@ const Piechart = ({ operaciones, idUsuario }) => {
 
 Piechart.propTypes = {
     operaciones: PropTypes.array.isRequired,
-    idUsuario: PropTypes.number.isRequired
+    idUsuario: PropTypes.number.isRequired,
+    ingresos: PropTypes.number.isRequired
 };
 
 export default Piechart

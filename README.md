@@ -12,7 +12,7 @@ Las tecnologías usadas para realizar el proyecto son:
 1. En nuestra terminal elegimos un lugar para clonar la carpeta y escribimos 'git clone' + el link del repositorio:
 
 ```
-git clone https://github.com/ramatc/cash-wise-app
+git clone https://github.com/tomasfernandez1608/cash-wise-app
 ```
 
 2. Desde la terminal nos paramos en la carpeta raiz del proyecto e instalamos todos las dependencias que están dentro con 'npm install':
